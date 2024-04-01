@@ -1,0 +1,77 @@
+.container {
+    background: beige;
+    height: 10vh; /* 100% view height */
+    display: flex;
+    flex-direction: row; /* column은 수직, Row-reverse 하면 오른쪽부터 1~10 */
+    flex-wrap: nowrap; /* wrap 하면 width 크기가 작아졌을 때 다음으로 넘어감. nowrap은 줄어들기만 하고 다음줄로 안 넘어감*/
+    justify-content: space-around; /* 중심축 align / flex-start, flex-end, center, space-around, space-evenly, space-between(맨양옆 공백없음) */
+    align-items: flex-start; /* 반대축 아이템 align */
+    align-content: space-between; /* 반대축 수직 (다른 컨테이너들과) algin */
+}
+
+.item {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+.item1 {
+    background: #ef9a9a;
+}
+
+.item2 {
+    background: #f48fb1;
+}
+
+.item3 {
+    background: #ce93d8;
+}
+
+.item4 {
+    background: #b39ddb;
+}
+
+.item5 {
+    background: #90caf9;
+}
+
+.item6 {
+    background: #a5d6a7;
+}
+
+.item7 {
+    background: #99ff00;
+}
+
+.item8 {
+    background: #ffff00;
+}
+
+.item9 {
+    background: #ffcc00;
+}
+
+.item10 {
+    background: #ff3333;
+}
+
+.containers {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.item11 {
+    flex-grow: 2; /* 기본 값은 0, 1이상부터는 더 길 때 자리차지하는 비율 */
+    flex-shrink: 1; /* 줄어들 때의 비율 (0이 기본) */
+}
+
+.item12 {
+    flex-grow: 1;
+    align-self: center; /* 얘만 위치 다르게 하고 싶을 때 */
+}
+
+.item13 {
+    flex-basis: 20%; /* 커질때도 작아질때도 컨테이너의 길이에 따라 이만큼 차지함 */
+}
