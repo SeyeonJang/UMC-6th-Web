@@ -15,5 +15,12 @@
     console.log(document.getElementById("number"));
     console.log(document.getElementById("increase"));
     console.log(document.getElementById("decrease"));
+
+    document.getElementById("increase").addEventListener("click", function() {
+        console.log("increase 가 클릭됨");
+    });
+    document.getElementById("decrease").addEventListener("click", function() {
+        console.log("decrease 가 클릭됨");
+    });
 </script>
 </html>
