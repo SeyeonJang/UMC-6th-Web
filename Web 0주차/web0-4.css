@@ -1,0 +1,48 @@
+/* display */
+/* inline : 컨텐츠 크기만큼 차지함 */
+/* inline-block : 컨텐츠 크기 상관없이 width, height 맞춰서 & 한 라인에 */
+
+div, span {
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+}
+
+/* div { 
+    background: red;
+    display: inline-block;
+} */
+
+span {
+    background: Blue;
+    display: block; /* block이 됨! */
+}
+
+
+/* position */
+/* static : 기본 값 */
+/* relative : 원래 위치에서 margin */
+/* absolute : 상위 태그(제일 가까이 있는 상자) 위치에서 margin */
+/* fixed : html 페이지 위치에서 margin */
+/* sticky : 스크롤되면 자리에 붙어있음 */
+
+div {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    background: red;
+}
+
+.container {
+    background: yellow;
+    left: 20px;
+    top: 20px;
+    position: relative;
+}
+
+.box {
+    background: blue;
+    left: 20px;
+    top: 20px;
+    position: sticky;
+}
