@@ -12,15 +12,24 @@
     <button id="decrease">-1</button>
 </body>
 <script>
+    let count = 0;
+    const counter = document.getElementById("number");
+    
     console.log(document.getElementById("number"));
     console.log(document.getElementById("increase"));
     console.log(document.getElementById("decrease"));
 
     document.getElementById("increase").addEventListener("click", function() {
         console.log("increase 가 클릭됨");
+        // 카운터 구현
+        count++;
+        counter.textContent = count;
     });
     document.getElementById("decrease").addEventListener("click", function() {
         console.log("decrease 가 클릭됨");
+        // 카운터 구현
+        count--;
+        counter.textContent = count;
     });
 </script>
 </html>
