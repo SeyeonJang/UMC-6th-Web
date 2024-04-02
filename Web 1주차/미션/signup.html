@@ -8,19 +8,45 @@
     <link rel="stylesheet" href="./signup.css" />
 </head>
 <body>
-    <h3>회원가입</h3>
-    <hr>
-    <p>이름</p>
-    <input type="text" id="name">
-    <p>이메일</p>
-    <input type="text" id="email">
-    <p>나이</p>
-    <input type="number" id="age">
-    <p>비밀번호</p>
-    <input type="password" id="pw">
-    <p>비밀번호 확인</p>
-    <input type="password" id="pw2">
-    
-    <button id="btn_signup">가입하기</button>
+    <div class="signupBox">
+        <h3>회원가입</h3>
+        <hr>
+        <p>이름</p>
+        <input type="text" id="name">
+        <p>이메일</p>
+        <input type="text" id="email">
+        <p>나이</p>
+        <input type="number" id="age">
+        <p>비밀번호</p>
+        <input type="password" id="pw">
+        <p>비밀번호 확인</p>
+        <input type="password" id="pw2">
+        <button id="btn_signup">가입하기</button>
+    </div>
+
+    <div class="modalBox">
+        <div class="modalContent">
+            <h3>가입 성공!</h3>
+            <p>UMC 챌린저 가입을 축하합니다!!</p>
+            <div class="modalButton">
+                <button id="btnCloseModal">닫기</button>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    const modal = document.querySelector('.modalBox');
+    const btnSuccess = document.getElementById("btn_signup");
+    const btnCloseModal = document.getElementById("btnCloseModal");
+
+    // validation을 모두 통과했을 때
+    // btnSuccess.addEventListener("click", ()=>{
+    //     modal.classList.remove('hidden');
+    // });
+    btnCloseModal.addEventListener("click", ()=>{
+        modal.classList.add('hidden');
+    });
+</script>
 </html>
+
+<!-- div 써서 하늘색창이랑 파란창이랑 나누고 input 셀렉터해서 css 넣고 ~ -->
