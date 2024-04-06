@@ -29,7 +29,7 @@ btnSignUp.addEventListener("click", (event)=>{ // signup Button
     let bool3 = ageValidation();
     let bool4 = pwValidation();
     let bool5 = pwCheckValidation();
-    
+
     if (bool1 && bool2 && bool3 && bool4 && bool5) {
         bool_success = true;
     } else {
@@ -54,7 +54,7 @@ function nameValidation() {
 }
 
 function emailValidation() {
-    if (userEmail.value.trim()!="" && userEmail.includes("@")) {
+    if (userEmail.value.trim()!="" && userEmail.value.includes("@")) {
         emailAlert.textContent = "올바른 이메일 형식입니다!";
         emailAlert.style.color = "green";
         return true;
@@ -67,7 +67,7 @@ function emailValidation() {
 
 function ageValidation() {
     ageAlert.style.color = "red";
-    if (userAge.value.trim()!="") {
+    if (userAge.value === "") {
         ageAlert.textContent = "나이를 입력해주세요!";
         return false;
     } else if (isNaN(userAge.value)) {
@@ -112,11 +112,12 @@ function pwValidation() {
 
 function pwCheckValidation() {
     pwCheckAlert.style.color = "red";
-    if (userPwCheck.value == userPw) {
+    if (userPwCheck.value.trim()!="" && userPwCheck.value === userPw.value) {
+        pwCheckAlert.textContent = "비밀번호가 일치합니다.";
+        pwCheckAlert.style.color = "green";
+        return true;
+    } else {
         pwCheckAlert.textContent = "비밀번호가 일치하지 않습니다.";
         return false;
-    } else {
-        pwCheckAlert.textContent = "비밀번호가 일치합니다.";
-        return true;
     }
 }
