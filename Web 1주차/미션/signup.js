@@ -24,7 +24,13 @@ let bool_success = false;
 btnSignUp.addEventListener("click", (event)=>{ // signup Button
     event.preventDefault(); // 기본 이벤트 동작 방지
     // validation
-    if (nameValidation() && emailValidation() && ageValidation() && pwValidation() && pwCheckValidation()) {
+    let bool1 = nameValidation();
+    let bool2 = emailValidation();
+    let bool3 = ageValidation();
+    let bool4 = pwValidation();
+    let bool5 = pwCheckValidation();
+    
+    if (bool1 && bool2 && bool3 && bool4 && bool5) {
         bool_success = true;
     } else {
         bool_success = false;
@@ -48,12 +54,69 @@ function nameValidation() {
 }
 
 function emailValidation() {
-    if (userEmail!="" && userEmail.includes("@")) {
+    if (userEmail.value.trim()!="" && userEmail.includes("@")) {
+        emailAlert.textContent = "올바른 이메일 형식입니다!";
+        emailAlert.style.color = "green";
         return true;
+    } else {
+        emailAlert.textContent = "올바른 이메일 형식이 아닙니다!";
+        emailAlert.style.color = "red";
+        return false;
     }
-    return false;
 }
 
 function ageValidation() {
+    ageAlert.style.color = "red";
+    if (userAge.value.trim()!="") {
+        ageAlert.textContent = "나이를 입력해주세요!";
+        return false;
+    } else if (isNaN(userAge.value)) {
+        ageAlert.textContent = "나이는 숫자 형식이어야 합니다!";
+        return false;
+    } else if (userAge.value.includes(".")) {
+        ageAlert.textContent = "나이는 소수가 될 수 없습니다!";
+        return false;
+    } else if (userAge.value < 19) {
+        ageAlert.textContent = "미성년자는 가입할 수 없습니다!";
+        return false;
+    } else if (userAge.value < 0) {
+        ageAlert.textContent = "나이는 음수가 될 수 없습니다!";
+        return false;
+    } else {
+        ageAlert.textContent = "올바른 나이 형식입니다!";
+        ageAlert.style.color = "green";
+        return true;
+    }
+}
 
+function pwValidation() {
+    // 영어, 숫자, 특수문자를 모두 조합했는지 검사하는 정규표현식
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]+$/;
+
+    pwAlert.style.color = "red";
+    if (userPw.value.length <= 4) {
+        pwAlert.textContent = "비밀번호는 최소 4자리 이상이어야 합니다.";
+        return false;
+    } else if (userPw.value.length > 12) {
+        pwAlert.textContent = "비밀번호는 최대 12자리까지 가능합니다.";
+        return false;
+    } else if (regex.test(regex)) {
+        pwAlert.textContent = "영어, 숫자, 특수문자를 모두 조합해서 입력해주세요.";
+        return false;
+    } else {
+        pwAlert.textContent = "올바른 비밀번호입니다!";
+        pwAlert.style.color = "green";
+        return true;
+    }
+}
+
+function pwCheckValidation() {
+    pwCheckAlert.style.color = "red";
+    if (userPwCheck.value == userPw) {
+        pwCheckAlert.textContent = "비밀번호가 일치하지 않습니다.";
+        return false;
+    } else {
+        pwCheckAlert.textContent = "비밀번호가 일치합니다.";
+        return true;
+    }
 }

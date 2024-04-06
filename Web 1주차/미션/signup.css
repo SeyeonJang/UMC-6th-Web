@@ -36,7 +36,8 @@ hr {
 }
 
 input {
-    border-color: #a68dff;
+    border-color: white;
+    border: 2px solid;
     border-radius: 4px;
     display: flex;
     
