@@ -1,7 +1,7 @@
 /* SignUp Page */ 
 
 body {
-    background: #a68dff;
+    background: #c2edff;
 }
 
 .signupBox {
@@ -14,6 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    margin: 0 auto;
 }
 
 hr {
@@ -38,9 +39,17 @@ input {
     border-color: #a68dff;
     border-radius: 4px;
     display: flex;
+    
     /* input의 상위 박스가 inputBox인데 왜 position을 absolute로 설정하면 signupBox의 width에 맞춰지는가 !!!!!!!!! */
     width: 100%;
     height: 20px;
+    /* margin: 0px 0px 20px 0px; */
+}
+
+.alertMessage {
+    padding: 0px;
+    margin-top: 5px;
+    margin-right: auto;
 }
 
 #btn_signup {
