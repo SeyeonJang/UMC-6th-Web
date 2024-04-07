@@ -9,7 +9,7 @@
 <body>
     <h1>UMC Study Plan</h1>
     <hr id="hr_big">
-    <input type="text" id="todo_input">
+    <input type="text" id="todo_input" onkeyup="enterkey()">
 
     <div class="todoText">
         <div class="todoBox">
@@ -19,10 +19,10 @@
             <!-- Todo 해야할 일 -->
             <div class="oneTodo">
                 <div class="spanTodo">
-                    <h4 id="text_todo_left">HTML</h4>
-                    <button>완료</button>
+                    <!-- <h4 id="text_todo_left">HTML</h4>
+                    <button id="todo_complete">완료</button> -->
                 </div>
-                <hr id="hr_middle">
+                <!-- <hr class="hr_middle"> -->
             </div>
         </div>
         <div class="todoBox">
@@ -33,11 +33,12 @@
             <div class="oneTodo">
                 <div class="spanTodo">
                     <h4 id="text_todo_rigft">HTML</h4>
-                    <button>삭제</button>
+                    <button id="todo_delete">삭제</button>
                 </div>
-                <hr id="hr_middle">
+                <hr class="hr_middle">
             </div>
         </div>
     </div>
 </body>
+<script src="./todo.js"></script>
 </html>

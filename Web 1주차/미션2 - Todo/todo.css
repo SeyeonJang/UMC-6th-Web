@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; /*수직가운데정렬*/
+    overflow: scroll;
 }
 
 #hr_big{
@@ -68,7 +69,7 @@ button {
     align-self: center; /* 수직 가운데 정렬 */
 }
 
-#hr_middle {
+.hr_middle {
     width: 80%;
     padding: 0px;
     margin: 5px 0px;
