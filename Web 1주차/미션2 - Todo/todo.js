@@ -53,6 +53,24 @@ function moveItemToCompletedList(todoItem, todoText) {
     }
     completedList.push(todoText);
     completedListContainer.appendChild(todoItem);
+
+    // '완료' 버튼을 '삭제' 버튼으로 바꾸는 과정
+    let completeButton = todoItem.querySelector('.todo_complete');
+    completeButton.textContent = "삭제";
+    completeButton.classList.remove('todo_complete');
+    completeButton.classList.add('todo_delete');
+    completeButton.removeEventListener('click', moveItemToCompletedList);
+    completeButton.addEventListener('click', function() {
+        removeItemFromCompletedList(todoItem, todoText);
+    });
+}
+
+function removeItemFromCompletedList(todoItem, todoText) {
+    let index = completedList.indexOf(todoText); // 완료된 목록에서의 인덱스 찾기
+    if (index !== -1) {
+        completedList.splice(index, 1); // 완료된 목록에서 제거
+    }
+    todoItem.remove(); // 화면에서도 제거
 }
 
 displayTodoList();
