@@ -4,13 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const count = useState(0)
+  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h2 id="number">0</h2>
-      <button id="increase">+1</button>
-      <button id="decrease">-1</button>
+      <h2 id="number">{count}</h2>
+      {/* +1 버튼을 누를 때마다 setCount 함수를 호출하여 count 값을 1씩 증가 */}
+      <button id="increase" onClick={() => setCount(count + 1)}>+1</button>
+      {/* -1 버튼을 누를 때마다 setCount 함수를 호출하여 count 값을 1씩 감소 */}
+      <button id="decrease" onClick={() => setCount(count - 1)}>-1</button>
     </>
     // <>
     //   <div>
