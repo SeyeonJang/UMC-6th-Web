@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import '../styles/Todo.css'
+import TodoComponent from '../components/TodoComponent.jsx'
+import CompletedComponent from '../components/CompletedComponent.jsx'
 
 function App() {
   return (
@@ -13,26 +15,14 @@ function App() {
           <div class="todoBox">
               <h4>해야 할 일</h4>
               <hr id="hr_small"/>
+              <TodoComponent/>
               
-              {/* <div class="oneTodo">
-                  <div class="spanTodo">
-                      <h4 id="text_todo_left">HTML</h4>
-                      <button id="todo_complete">완료</button>
-                  </div>
-                  <hr class="hr_middle"/>
-              </div> */}
           </div>
           <div class="todoBox">
               <h4>해낸 일</h4>
               <hr id="hr_small"/>
+              <CompletedComponent/>
 
-              {/* <div class="oneTodo">
-                  <div class="spanTodo">
-                      <h4 id="text_todo_rigft">HTML</h4>
-                      <button id="todo_delete">삭제</button>
-                  </div>
-                  <hr class="hr_middle"/>
-              </div> */}
           </div>
         </div>
       </div>
