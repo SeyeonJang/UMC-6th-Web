@@ -22,6 +22,12 @@ function App() {
     setTodos(newTodos);
     setCompletedList([...completedList, completedTodo]); // 위에서 제거한 항목을 completedList 목록에 추가
   };
+  
+  const handleDelete = (index) => {
+    const deletedTodo = completedList[index];
+    const newCompletedList = completedList.filter((_, i) => i !== index);
+    setCompletedList(newCompletedList);
+  }
 
   return (
     <>
@@ -44,7 +50,7 @@ function App() {
               <h4>해낸 일</h4>
               <hr id="hr_small"/>
               {completedList.map((todo,index) => (
-                <CompletedComponent key={index} text={todo}/>
+                <CompletedComponent key={index} text={todo} onDelete={() => handleDelete(index)}/>
               ))}
 
           </div>
