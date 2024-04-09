@@ -5,6 +5,7 @@ import CompletedComponent from '../components/CompletedComponent.jsx'
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [completedList, setCompletedList] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   const handleEnterKey = (event) => {
@@ -14,6 +15,13 @@ function App() {
       setInputValue(""); // 입력창 초기화
     }
   }
+
+  const handleComplete = (index) => {
+    const completedTodo = todos[index];
+    const newTodos = todos.filter((_, i) => i !== index); // index와 겹치지 않는 것을 제외하고 newTodos에 추가
+    setTodos(newTodos);
+    setCompletedList([...completedList, completedTodo]); // 위에서 제거한 항목을 completedList 목록에 추가
+  };
 
   return (
     <>
@@ -28,14 +36,16 @@ function App() {
               <h4>해야 할 일</h4>
               <hr id="hr_small"/>
               {todos.map((todo,index) => (
-                <TodoComponent key={index} text={todo}/>
+                <TodoComponent key={index} text={todo} onComplete={() => handleComplete(index)}/>
               ))}
               
           </div>
           <div class="todoBox">
               <h4>해낸 일</h4>
               <hr id="hr_small"/>
-              <CompletedComponent/>
+              {completedList.map((todo,index) => (
+                <CompletedComponent key={index} text={todo}/>
+              ))}
 
           </div>
         </div>
