@@ -67,7 +67,6 @@ export const movies = {
         "vote_count": 3566
       }
     ],
-    "total_pages": 5,
-    "total_results": 83
-  };
-  
+  "total_pages": 5,
+  "total_results": 83
+};
