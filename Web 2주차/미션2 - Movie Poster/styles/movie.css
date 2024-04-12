@@ -1,16 +1,18 @@
 .movieBox {
     width: 200px;
-    height: auto;
+    /* height: auto; */
+    height: 350px;
     position: absolute;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    background-color: red;
     /* flex: 1 0 calc(33.33% - 20px); */
 }
 
 .image {
     width: 100%;
-    height: auto;
+    height: 100%;
     background-color: blue;
 }
 
