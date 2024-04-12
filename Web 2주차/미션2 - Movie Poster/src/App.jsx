@@ -24,11 +24,15 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className='Container'>
       <div className='movieContainer'>
-        {MovieComponents}
+        {MovieComponents.map((component, index) => (
+        <div key={index} className="movieItem">
+          {component}
+        </div>
+      ))}
       </div>
-    </>
+    </div>
   )
 }
 
