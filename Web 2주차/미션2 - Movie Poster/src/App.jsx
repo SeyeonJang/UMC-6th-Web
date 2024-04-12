@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { movies } from '../public/data/movies.jsx';
 import MovieComponent from '../components/MovieComponent.jsx';
+import MovieDetailComponent from '../components/MovieDetailComponent.jsx';
 import './App.css';
 
 function App() {
@@ -26,11 +27,13 @@ function App() {
   return (
     <div className='Container'>
       <div className='movieContainer'>
+
         {MovieComponents.map((component, index) => (
-        <div key={index} className="movieItem">
+          <div key={index} className="movieItem">
           {component}
         </div>
-      ))}
+      ))} 
+      <MovieDetailComponent/>
       </div>
     </div>
   )

@@ -1,0 +1,24 @@
+.movieDetailBox {
+    width: 200px;
+    height: 350px;
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0, 0.7);
+    margin-left: 5px;
+}
+
+.textDetailBox {
+    margin: 10px 15px;
+    color: white;
+}
+
+#title_detail {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#overview {
+    font-size: 13px;
+}
