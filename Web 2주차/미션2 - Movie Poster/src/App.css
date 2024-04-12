@@ -28,3 +28,11 @@
   justify-content: center;
   margin-bottom: 30px;
 }
+
+.movieDetailWrapper .movieDetailBox {
+  display: none; 
+}
+
+.movieItem:hover .movieDetailWrapper .movieDetailBox { /* hover로 마우스 판단 */
+  display: flex;
+}

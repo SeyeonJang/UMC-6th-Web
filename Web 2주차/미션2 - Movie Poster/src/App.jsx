@@ -64,11 +64,12 @@ function App() {
         {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
           <div key={id} className="movieItem">
             {movieComponent}
-            <div className="movieItem">
+            <div className="movieDetailWrapper"> {/* 클래스 이름 변경 */}
               {movieDetailComponent}
             </div>
           </div>
-        ))}   
+        ))} 
+
 
         {/* 두 개 따로 구현했을 때 -> 영화 리스트 다음에 설명 리스트가 붙어서 나옴 */}
         {/* {MovieComponents.map((component, index) => (

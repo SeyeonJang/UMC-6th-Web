@@ -1,7 +1,7 @@
 .movieDetailBox {
     width: 200px;
     height: 350px;
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: start;
     flex-direction: column;
