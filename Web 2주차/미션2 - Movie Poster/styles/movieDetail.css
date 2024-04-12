@@ -19,5 +19,9 @@
 }
 
 #overview {
+    height: 270px;
     font-size: 13px;
+    overflow: scroll;
+    word-break: break-all;
+    white-space: normal;
 }
