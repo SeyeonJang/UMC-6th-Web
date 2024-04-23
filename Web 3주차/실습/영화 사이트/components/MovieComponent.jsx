@@ -1,19 +1,61 @@
-import '../styles/movie.css'
+import styled from 'styled-components';
 
+// Styled components
+const MovieBox = styled.div`
+    width: 200px;
+    height: 350px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: red;
+`;
+
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`;
+
+const BottomBox = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    background-color: rgb(40, 40, 40);
+`;
+
+const TextBox = styled.div`
+    display: flex;
+    width: 100%;
+    height: 50px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+`;
+
+const PaddingBox = styled.div`
+    width: 10px;
+    display: flex;
+`;
+
+// MovieComponent
 function MovieComponent({image, title, voteAverage}) {
     return (
-        <div className='movieBox'>
-            <img src={image} alt={title} className='movieBox__image'/>
-            <div className='movieBox__bottomBox'>
-                <div className='movieBox__bottomBox__paddingBox'></div>
-                <div className='movieBox__bottomBox__textBox'>
+        <MovieBox>
+            <Image src={image} alt={title} />
+            <BottomBox>
+                <PaddingBox />
+                <TextBox>
                     <p id='movieBox__bottomBox__textBox__title'>{title}</p>
                     <p id='movieBox__bottomBox__textBox__vote_average'>{voteAverage}</p>
-                </div>
-                <div className='movieBox__bottomBox__paddingBox'></div>
-            </div>
-        </div>
-    )
+                </TextBox>
+                <PaddingBox />
+            </BottomBox>
+        </MovieBox>
+    );
 }
 
-export default MovieComponent
+export default MovieComponent;

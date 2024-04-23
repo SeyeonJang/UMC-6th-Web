@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// import { movies } from '../public/data/movies.jsx';
-import MovieComponent from '../components/MovieComponent.jsx';
-import MovieDetailComponent from '../components/MovieDetailComponent.jsx';
-import './App.css';
+import styled from 'styled-components';
+import MovieComponent from '../components/MovieComponent';
+import MovieDetailComponent from '../components/MovieDetailComponent';
 
+// App component
 function App() {
   const [movieData, setMovieData] = useState([]);
 
@@ -24,7 +24,7 @@ function App() {
         const data = await response.json();
         const movies = data.results;
         console.log('Number of movies:', movies.length); // 영화 개수 출력
-        
+
         const newMovieData = movies.map(movie => ({
           id: movie.id,
           movieComponent: (
@@ -51,23 +51,62 @@ function App() {
     fetchData();
   }, []);
 
-
-
   return (
-    <div className='container'>
-      <div className='container__movieContainer'>
+    <Container>
+      <MovieContainer>
 
         {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
-          <div key={id} className="movieContainer__movieItem">
+          <MovieItem key={id} className="movieContainer__movieItem">
             {movieComponent}
-            <div className="movieContainer__movieItem__movieDetailWrapper">
+            <MovieDetailWrapper className="movieContainer__movieItem__movieDetailWrapper">
               {movieDetailComponent}
-            </div>
-          </div>
-        ))} 
-      </div>
-    </div>
+            </MovieDetailWrapper>
+          </MovieItem>
+        ))}
+
+      </MovieContainer>
+    </Container>
   )
 }
 
-export default App
+// Styled components
+const Container = styled.div`
+  padding: 30px;
+  background-color: rgb(19, 19, 19);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow-y: scroll;
+`;
+
+const MovieContainer = styled.div`
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  padding-top: 10px;
+  gap: 20px;
+  overflow-y: scroll;
+  min-height: 100vh;
+`;
+
+const MovieItem = styled.div`
+  flex-basis: calc(12% - 20px);
+  display: flex;
+  height: 332px;
+  position: relative;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  &:hover .movieContainer__movieItem__movieDetailWrapper {
+    display: flex;
+  }
+`;
+
+const MovieDetailWrapper = styled.div`
+  display: none;
+`;
+
+export default App;
