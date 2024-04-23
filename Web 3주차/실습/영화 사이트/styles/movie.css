@@ -1,29 +1,27 @@
 .movieBox {
     width: 200px;
-    /* height: auto; */
     height: 350px;
     position: absolute;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     background-color: red;
-    /* flex: 1 0 calc(33.33% - 20px); */
 }
 
-.image {
+.movieBox__image {
     width: 100%;
     height: 100%;
-    background-color: blue;
+    object-fit: cover;
 }
 
-.bottomBox {
+.movieBox__bottomBox {
     display: flex;
     width: 100%;
     flex-direction: row;
     background-color: rgb(40, 40, 40);
 }
 
-.textBox {
+.movieBox__bottomBox__textBox {
     display: flex;
     width: 100%;
     height: 50px;
@@ -35,7 +33,7 @@
     color: white;
 }
 
-.paddingBox {
+.movieBox__bottomBox__paddingBox {
     width: 10px;
     display: flex;
 }

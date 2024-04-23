@@ -1,4 +1,4 @@
-.Container {
+.container {
   padding: 30px; /* 내부 여백으로 요소들과의 간격 설정 */
   background-color: rgb(19, 19, 19);
   display: flex;
@@ -7,7 +7,7 @@
   overflow-y: scroll; /* 세로 스크롤이 필요한 경우 스크롤이 나타나도록 설정 */
 }
 
-.movieContainer {
+.container__movieContainer {
   width: 100vw;
   height: auto;
   display: flex; 
@@ -20,7 +20,7 @@
   min-height: 100vh; /* 컨테이너가 화면의 최대 높이를 넘어가지 않도록 설정 */
 }
 
-.movieItem {
+.movieContainer__movieItem {
   flex-basis: calc(12% - 20px); /* 가로가 전체의 12%에서 20Px 줄인 정도*/
   display: flex;
   height: 332px;
@@ -29,10 +29,10 @@
   margin-bottom: 30px;
 }
 
-.movieDetailWrapper .movieDetailBox {
+.movieContainer__movieItem__movieDetailWrapper {
   display: none; 
 }
 
-.movieItem:hover .movieDetailWrapper .movieDetailBox { /* hover로 마우스 판단 */
+.movieContainer__movieItem:hover { /* hover로 마우스 판단 */
   display: flex;
 }

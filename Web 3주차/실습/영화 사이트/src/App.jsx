@@ -54,13 +54,13 @@ function App() {
 
 
   return (
-    <div className='Container'>
-      <div className='movieContainer'>
+    <div className='container'>
+      <div className='container__movieContainer'>
 
         {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
-          <div key={id} className="movieItem">
+          <div key={id} className="movieContainer__movieItem">
             {movieComponent}
-            <div className="movieDetailWrapper"> {/* 클래스 이름 변경 */}
+            <div className="movieContainer__movieItem__movieDetailWrapper">
               {movieDetailComponent}
             </div>
           </div>

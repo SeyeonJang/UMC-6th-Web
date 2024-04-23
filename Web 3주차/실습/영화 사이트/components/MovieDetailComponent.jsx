@@ -3,9 +3,9 @@ import '../styles/movieDetail.css'
 function MovieDetailComponent({title, overview}) {
     return (
         <div className='movieDetailBox'>
-            <div className='textDetailBox'>
-                <p id='title_detail'>{title}</p>
-                <p id='overview'>{overview}</p>
+            <div className='movieDetailBox__textDetailBox'>
+                <p id='movieDetailBox__textDetailBox__title-detail'>{title}</p>
+                <p id='movieDetailBox__textDetailBox__overview'>{overview}</p>
             </div>
         </div>
     )
