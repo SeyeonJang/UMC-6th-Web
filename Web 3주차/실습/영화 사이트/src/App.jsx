@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Navbar from '../components/Navbar';
+import NavbarComponent from '../components/NavbarComponent';
 import MovieComponent from '../components/MovieComponent';
 import MovieDetailComponent from '../components/MovieDetailComponent';
 
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <>
-      {Navbar}
+      <NavbarComponent/>
 
       <Container>
         <MovieContainer>
