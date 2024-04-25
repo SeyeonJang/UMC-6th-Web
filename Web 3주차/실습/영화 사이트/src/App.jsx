@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Navbar from '../components/Navbar';
 import MovieComponent from '../components/MovieComponent';
 import MovieDetailComponent from '../components/MovieDetailComponent';
 
@@ -52,48 +53,55 @@ function App() {
   }, []);
 
   return (
-    <Container>
-      <MovieContainer>
+    <>
+      {Navbar}
 
-        {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
-          <MovieItem key={id} className="movieContainer__movieItem">
-            {movieComponent}
-            <MovieDetailWrapper className="movieContainer__movieItem__movieDetailWrapper">
-              {movieDetailComponent}
-            </MovieDetailWrapper>
-          </MovieItem>
-        ))}
+      <Container>
+        <MovieContainer>
+          {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
+            <MovieItem key={id} className="movieContainer__movieItem">
+              {movieComponent}
+              <MovieDetailWrapper className="movieContainer__movieItem__movieDetailWrapper">
+                {movieDetailComponent}
+              </MovieDetailWrapper>
+            </MovieItem>
+          ))}
+        </MovieContainer>
+      </Container>
 
-      </MovieContainer>
-    </Container>
+    </>
   )
 }
 
-// Styled components
 const Container = styled.div`
-  padding: 30px;
+  width: 100vw;
+  padding: 10px 0px;
   background-color: rgb(19, 19, 19);
   display: flex;
   flex-direction: row;
   justify-content: center;
   overflow-y: scroll;
+  margin: 0;
+  align-items: center;
 `;
 
 const MovieContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: start;
   padding-top: 10px;
-  gap: 20px;
+  padding-left: 40px;
+  gap: 10px;
   overflow-y: scroll;
   min-height: 100vh;
+  margin: 0px;
 `;
 
 const MovieItem = styled.div`
-  flex-basis: calc(12% - 20px);
+  flex-basis: calc(12% - 5px);
   display: flex;
   height: 332px;
   position: relative;
