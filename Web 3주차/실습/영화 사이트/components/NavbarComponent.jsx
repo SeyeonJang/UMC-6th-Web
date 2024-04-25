@@ -32,6 +32,12 @@ const MenuText = styled.p`
     margin: 0px;
     padding: 0px 10px;
     color: white;
+    font-size: 16px;
+    &:hover {
+        color: orange;
+        font-size: 17px;
+        font-weight: 600;
+    }
 `;
 
 function NavbarComponent() {
