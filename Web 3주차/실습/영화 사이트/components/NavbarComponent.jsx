@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Styled components
 const Navbar = styled.div`
@@ -45,11 +46,11 @@ function NavbarComponent() {
         <Navbar>
             <MainText>UMC Chacco Movie</MainText>
             <MenuBox>
-                <MenuText>회원가입</MenuText>
-                <MenuText>Popular</MenuText>
-                <MenuText>Now Playing</MenuText>
-                <MenuText>Top Rated</MenuText>
-                <MenuText>Upcoming</MenuText>
+                <MenuText><Link to="/main-page">회원가입</Link></MenuText>
+                <MenuText><Link to="/popular-page">Popular</Link></MenuText>
+                <MenuText><Link to="/now-playing-page">Now Playing</Link></MenuText>
+                <MenuText><Link to="/top-rated-page">Top Rated</Link></MenuText>
+                <MenuText><Link to="/up-coming-page">Upcoming</Link></MenuText>
             </MenuBox>
         </Navbar>
     );

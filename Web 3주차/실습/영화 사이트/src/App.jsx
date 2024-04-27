@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import NavbarComponent from '../components/NavbarComponent';
 import MovieComponent from '../components/MovieComponent';
 import MovieDetailComponent from '../components/MovieDetailComponent';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import MainPage from '../pages/MainPage';
+import NowPlayingPage from '../pages/NowPlayingPage';
+import PopularPage from '../pages/PopularPage';
+import TopRatedPage from '../pages/TopRatedPage';
+import UpComing from '../pages/UpComing';
 
 // App component
 function App() {
@@ -53,11 +60,18 @@ function App() {
   }, []);
 
   return (
-    <>
-      <NavbarComponent/>
+    <BrowserRouter>
 
+      <NavbarComponent/>
       <Container>
-        <MovieContainer>
+        <Routes>
+          <Route path='/main-page' element={<MainPage/>}/>
+          <Route path='/now-playing-page' element={<NowPlayingPage/>}/>
+          <Route path='/popular-page' element={<PopularPage/>}/>
+          <Route path='/top-rated-page' element={<TopRatedPage/>}/>
+          <Route path='/up-coming-page' element={<UpComing/>}/>
+        </Routes>
+        {/* <MovieContainer>
           {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
             <MovieItem key={id} className="movieContainer__movieItem">
               {movieComponent}
@@ -66,10 +80,10 @@ function App() {
               </MovieDetailWrapper>
             </MovieItem>
           ))}
-        </MovieContainer>
+        </MovieContainer> */}
       </Container>
 
-    </>
+    </BrowserRouter>
   )
 }
 
