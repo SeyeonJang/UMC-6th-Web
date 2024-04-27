@@ -8,7 +8,7 @@ const MovieBox = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background-color: red;
+    background-color: black;
 `;
 
 const Image = styled.img`
@@ -50,7 +50,7 @@ function MovieComponent({image, title, voteAverage}) {
                 <PaddingBox />
                 <TextBox>
                     <p id='movieBox__bottomBox__textBox__title'>{title}</p>
-                    <p id='movieBox__bottomBox__textBox__vote_average'>{voteAverage}</p>
+                    <p id='movieBox__bottomBox__textBox__vote_average'>★{Number(voteAverage).toFixed(1)}</p>
                 </TextBox>
                 <PaddingBox />
             </BottomBox>
