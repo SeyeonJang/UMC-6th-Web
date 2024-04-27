@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import React from 'react';
+import MoviesFetchComponent from '../components/MoviesFetchComponent';
 
 function NowPlayingPage() {
-    return(
-        <h3>NowPlayingPage</h3>
+    const address = 'https://api.themoviedb.org/3/movie/now_playing?language=ko-KRx&page=1';
+
+    return (
+        <MoviesFetchComponent address={address}/>
     );
 }
 
