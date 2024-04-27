@@ -3,14 +3,17 @@ import styled from 'styled-components';
 
 import MovieComponent from '../components/MovieComponent';
 import MovieDetailComponent from '../components/MovieDetailComponent';
+import Spinner from '../assets/Spinner.gif';
 
 function MoviesFetchComponent({address}) {
     const [movieData, setMovieData] = useState([]);
+    const [spinner, setSpinner] = useState(false);
 
     // fetch
     useEffect(() => {
         const fetchData = async () => {
         try {
+            setSpinner(true);
             const response = await fetch(address, {
             method: 'GET',
             headers: {
@@ -44,6 +47,7 @@ function MoviesFetchComponent({address}) {
             )
             }));
             setMovieData(newMovieData);
+            setSpinner(false);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -52,7 +56,11 @@ function MoviesFetchComponent({address}) {
     }, []);
 
     return(
-        <MovieContainer>
+        spinner 
+            ? <SpinnerWrapper>
+                <img src={Spinner} alt="loading" width="10%" height="10%" color='white'/>
+            </SpinnerWrapper>
+            : <MovieContainer>
             {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
                 <MovieItem key={id} className="movieContainer__movieItem">
                 {movieComponent}
@@ -61,9 +69,17 @@ function MoviesFetchComponent({address}) {
                 </MovieDetailWrapper>
                 </MovieItem>
             ))}
-        </MovieContainer>
+        </MovieContainer>    
     );
 }
+
+const SpinnerWrapper = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 const MovieContainer = styled.div`
     width: 100%;
