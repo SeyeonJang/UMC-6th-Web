@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import React from 'react';
+import MoviesFetchComponent from '../components/MoviesFetchComponent';
 
 function UpComing() {
+    const address = 'https://api.themoviedb.org/3/movie/upcoming?language=ko-KR&page=1';
+
     return(
-        <h3>UpComing</h3>
+        <MoviesFetchComponent address={address}/>
     );
 }
 

@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import React from 'react';
+import MoviesFetchComponent from '../components/MoviesFetchComponent';
 
 function PopularPage() {
+    const address = 'https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1';
+
     return(
-        <h3>PopularPage</h3>
+        <MoviesFetchComponent address={address}/>
     );
 }
 

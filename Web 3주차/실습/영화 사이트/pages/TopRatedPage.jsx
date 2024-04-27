@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import React from 'react';
+import MoviesFetchComponent from '../components/MoviesFetchComponent';
 
 function TopRatedPage() {
-    return(
-        <h3>TopRatedPage</h3>
+    const address = 'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1';
+
+    return (
+        <MoviesFetchComponent address={address}/>
     );
 }
 
