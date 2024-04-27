@@ -89,6 +89,7 @@ function App() {
 
 const Container = styled.div`
   width: 100vw;
+  min-height: 100vh;
   padding: 10px 0px;
   background-color: rgb(19, 19, 19);
   display: flex;
