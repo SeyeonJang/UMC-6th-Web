@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 // Styled components
 const Navbar = styled.div`
@@ -39,14 +40,23 @@ const MenuText = styled.p`
         font-size: 17.5px;
         font-weight: 600;
     }
+    
 `;
 
 function NavbarComponent() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleButtonClick = () => {
+        setIsLoggedIn(!isLoggedIn);
+    };
+
+    const buttonText = isLoggedIn ? "로그아웃" : "로그인";
+
     return (
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
-                <Link to="/main-page"><MenuText>회원가입</MenuText></Link>
+                <Link to="/main-page"><MenuText onClick={handleButtonClick}>{buttonText}</MenuText></Link>
                 <Link to="/popular-page"><MenuText>Popular</MenuText></Link>
                 <Link to="/now-playing-page"><MenuText>Now Playing</MenuText></Link>
                 <Link to="/top-rated-page"><MenuText>Top Rated</MenuText></Link>
