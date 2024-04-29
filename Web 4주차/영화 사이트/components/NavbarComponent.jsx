@@ -45,7 +45,7 @@ const LoginText = styled.p`
 const MenuText = styled.p`
     margin: 0px;
     padding: 0px 10px;
-    color: white;
+    color: ${({ isActive }) => (isActive ? 'orange' : 'white')};
     font-size: 17px;
     &:hover {
         color: orange;
@@ -56,22 +56,25 @@ const MenuText = styled.p`
 
 function NavbarComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [activeMenu, setActiveMenu] = useState(null);
 
-    const handleButtonClick = () => {
+    const handleLoginClick = () => {
         setIsLoggedIn(!isLoggedIn);
     };
 
-    const buttonText = isLoggedIn ? "로그아웃" : "로그인";
+    const handleMenuClick = (menu) => {
+        setActiveMenu(menu);
+    }
 
     return (
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
-                <Link to="/main-page"><LoginText onClick={handleButtonClick}>{buttonText}</LoginText></Link>
-                <Link to="/popular-page"><MenuText>Popular</MenuText></Link>
-                <Link to="/now-playing-page"><MenuText>Now Playing</MenuText></Link>
-                <Link to="/top-rated-page"><MenuText>Top Rated</MenuText></Link>
-                <Link to="/up-coming-page"><MenuText>Upcoming</MenuText></Link>
+                <Link to="/main-page"><LoginText onClick={handleLoginClick}>{isLoggedIn ? '로그아웃' : '로그인'}</LoginText></Link>
+                <Link to="/popular-page"><MenuText isActive={activeMenu === 'popular'} onClick={() => handleMenuClick('popular')}>Popular</MenuText></Link>
+                <Link to="/now-playing-page"><MenuText isActive={activeMenu === 'now-playing'} onClick={() => handleMenuClick('now-playing')}>Now Playing</MenuText></Link>
+                <Link to="/top-rated-page"><MenuText isActive={activeMenu === 'top-rated'} onClick={() => handleMenuClick('top-rated')}>Top Rated</MenuText></Link>
+                <Link to="/up-coming-page"><MenuText isActive={activeMenu === 'up-coming'} onClick={() => handleMenuClick('up-coming')}>Upcoming</MenuText></Link>
             </MenuBox>
         </Navbar>
     );
