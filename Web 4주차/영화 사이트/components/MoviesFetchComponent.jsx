@@ -41,8 +41,10 @@ function MoviesFetchComponent({address}) {
             movieDetailComponent: (
                 <MovieDetailComponent
                 key={movie.id}
+                id={movie.id}
                 title={movie.title}
                 overview={movie.overview}
+                originalTitle={movie.original_title}
                 />
             )
             }));

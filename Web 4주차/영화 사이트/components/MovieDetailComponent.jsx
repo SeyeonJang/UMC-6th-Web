@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 // Styled components
 const MovieDetailBox = styled.div`
@@ -30,9 +31,16 @@ const Overview = styled.p`
 `;
 
 // MovieDetailComponent
-function MovieDetailComponent({title, overview}) {
+function MovieDetailComponent({id, title, overview, originalTitle}) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        console.log(originalTitle);
+        navigate(`movie/${originalTitle}`, { state: {id:id} });
+    }
+
     return (
-        <MovieDetailBox>
+        <MovieDetailBox onClick={handleClick}>
             <TextDetailBox>
                 <TitleDetail>{title}</TitleDetail>
                 <Overview>{overview}</Overview>
