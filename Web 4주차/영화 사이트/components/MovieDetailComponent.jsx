@@ -35,8 +35,7 @@ function MovieDetailComponent({id, title, overview, originalTitle}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log(originalTitle);
-        navigate(`movie/${originalTitle}`, { state: {id:id} });
+        navigate(`/movie/${encodeURIComponent(originalTitle)}`, { state: {id:id} });
     }
 
     return (
