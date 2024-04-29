@@ -56,7 +56,7 @@ const MenuText = styled.p`
 
 function NavbarComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [activeMenu, setActiveMenu] = useState('popular');
+    const [activeMenu, setActiveMenu] = useState(null);
 
     const handleLoginClick = () => {
         setIsLoggedIn(!isLoggedIn);
