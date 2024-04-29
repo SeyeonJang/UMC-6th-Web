@@ -30,6 +30,18 @@ const MenuBox = styled.div`
     padding-right: 20px;
 `;
 
+const LoginText = styled.p`
+    margin: 0px;
+    padding: 0px 10px;
+    font-size: 17px;
+    color: orange;
+    &:hover {
+        color: orange;
+        font-size: 17.5px;
+        font-weight: 600;
+    }
+`;
+
 const MenuText = styled.p`
     margin: 0px;
     padding: 0px 10px;
@@ -40,7 +52,6 @@ const MenuText = styled.p`
         font-size: 17.5px;
         font-weight: 600;
     }
-    
 `;
 
 function NavbarComponent() {
@@ -56,7 +67,7 @@ function NavbarComponent() {
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
-                <Link to="/main-page"><MenuText onClick={handleButtonClick}>{buttonText}</MenuText></Link>
+                <Link to="/main-page"><LoginText onClick={handleButtonClick}>{buttonText}</LoginText></Link>
                 <Link to="/popular-page"><MenuText>Popular</MenuText></Link>
                 <Link to="/now-playing-page"><MenuText>Now Playing</MenuText></Link>
                 <Link to="/top-rated-page"><MenuText>Top Rated</MenuText></Link>
