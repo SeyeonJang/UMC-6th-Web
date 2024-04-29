@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import NavbarComponent from '../components/NavbarComponent';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import MainPage from '../pages/MainPage';
 import NowPlayingPage from '../pages/NowPlayingPage';
@@ -18,6 +18,7 @@ function App() {
       <NavbarComponent/>
       <Container>
         <Routes>
+          <Route path='/' element={<Navigate replace to="/main-page" />} />
           <Route path='/main-page' element={<MainPage/>}/>
           <Route path='/now-playing-page' element={<NowPlayingPage/>}/>
           <Route path='/popular-page' element={<PopularPage/>}/>
