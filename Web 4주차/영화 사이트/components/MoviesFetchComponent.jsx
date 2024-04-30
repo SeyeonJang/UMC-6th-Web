@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import MovieComponent from '../components/MovieComponent';
 import MovieDetailComponent from '../components/MovieDetailComponent';
-import Spinner from '../assets/Spinner.gif';
+import SpinnerComponent from './SpinnerComponent';
 
 function MoviesFetchComponent({address}) {
     const [movieData, setMovieData] = useState([]);
@@ -59,9 +59,7 @@ function MoviesFetchComponent({address}) {
 
     return(
         spinner 
-            ? <SpinnerWrapper>
-                <img src={Spinner} alt="loading" width="10%" height="10%" color='white'/>
-            </SpinnerWrapper>
+            ? <SpinnerComponent/>
             : <MovieContainer>
             {movieData.map(({ id, movieComponent, movieDetailComponent }) => (
                 <MovieItem key={id} className="movieContainer__movieItem">
@@ -74,14 +72,6 @@ function MoviesFetchComponent({address}) {
         </MovieContainer>    
     );
 }
-
-const SpinnerWrapper = styled.div`
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 
 const MovieContainer = styled.div`
     width: 100%;

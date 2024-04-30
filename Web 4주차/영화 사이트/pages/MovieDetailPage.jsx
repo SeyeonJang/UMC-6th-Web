@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import SpinnerComponent from '../components/SpinnerComponent';
+
 function MovieDetailPage() {
     const { state } = useLocation();
     const [movieDetail, setMovieDetail] = useState(null);
@@ -25,6 +27,9 @@ function MovieDetailPage() {
     }, [state]);
 
     return (
+        !movieDetail 
+        ? <SpinnerComponent/>
+        :
         <div>
             <h1>{movieDetail.title}</h1>
             <p>{movieDetail.overview}</p>
