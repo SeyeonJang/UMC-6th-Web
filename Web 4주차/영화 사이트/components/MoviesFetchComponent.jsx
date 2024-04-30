@@ -80,7 +80,7 @@ const MovieContainer = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: start;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-left: 40px;
     gap: 10px;
     overflow-y: scroll;
