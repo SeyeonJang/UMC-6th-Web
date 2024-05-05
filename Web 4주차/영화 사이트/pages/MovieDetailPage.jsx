@@ -27,6 +27,16 @@ function MovieDetailPage() {
         }
     }, [state]);
 
+    function renderStars(voteAverage) {
+        const starsCount = Math.floor(voteAverage);
+        let stars = '';
+        for(let i = 0; i < starsCount; i++) {
+            stars += '⭐️';
+        }
+        return stars;
+    }
+    
+
     return (
         !movieDetail 
         ? <SpinnerComponent/>
@@ -38,7 +48,7 @@ function MovieDetailPage() {
 
                 <MovieContentWrapper>
                     <MainText>{movieDetail.title}</MainText>
-                    <SubText>평점 {movieDetail.vote_average}</SubText>
+                    <SubText>평점 {renderStars(movieDetail.vote_average)}</SubText>
                     <SubText>개봉일 {movieDetail.release_date}</SubText>
                     <SubText>줄거리</SubText>
                     <OverViewBox>{movieDetail.overview ? movieDetail.overview : "TMDB에서 제공하는 API에 상세 줄거리 정보가 없습니다."}</OverViewBox>
