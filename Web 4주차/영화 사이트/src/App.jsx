@@ -8,6 +8,7 @@ import PopularPage from '../pages/PopularPage';
 import TopRatedPage from '../pages/TopRatedPage';
 import UpComing from '../pages/UpComing';
 import MovieDetailPage from '../pages/MovieDetailPage';
+import NotFoundPage from '../pages/NotFoundPage';
 
 // App component
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='/top-rated-page' element={<TopRatedPage/>}/>
           <Route path='/up-coming-page' element={<UpComing/>}/>
           <Route path='/movie/:originalTitle' element={<MovieDetailPage/>}/>
+          <Route path='/*' element={<NotFoundPage/>}/>
         </Routes>
       </Container>
 
