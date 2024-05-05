@@ -31,16 +31,19 @@ function MovieDetailPage() {
         !movieDetail 
         ? <SpinnerComponent/>
         : <MovieDetailBox posterPath={movieDetail.backdrop_path} alt={movieDetail.title}>
+            <Overlay/>
+            
+            <MovieDetailWrapper>
+                <MoviePoster posterPath={movieDetail.poster_path}/>
 
-            <MoviePoster posterPath={movieDetail.poster_path}/>
-
-            <MovieContentWrapper>
-                <MainText>{movieDetail.title}</MainText>
-                <SubText>평점 {movieDetail.vote_average}</SubText>
-                <SubText>개봉일 {movieDetail.release_date}</SubText>
-                <SubText>줄거리</SubText>
-                <OverViewBox>{movieDetail.overview}</OverViewBox>
-            </MovieContentWrapper>
+                <MovieContentWrapper>
+                    <MainText>{movieDetail.title}</MainText>
+                    <SubText>평점 {movieDetail.vote_average}</SubText>
+                    <SubText>개봉일 {movieDetail.release_date}</SubText>
+                    <SubText>줄거리</SubText>
+                    <OverViewBox>{movieDetail.overview}</OverViewBox>
+                </MovieContentWrapper>
+                            </MovieDetailWrapper>
         
         </MovieDetailBox>
     );
@@ -53,23 +56,58 @@ const MovieDetailBox = styled.div`
     background-image: url('${props => `https://image.tmdb.org/t/p/w500/${props.posterPath}`}');
     background-size: cover;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 `;
+
+const Overlay = styled.div`
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 0;
+`;
+
+const MovieDetailWrapper = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-top: -30px;
+`;
+
 const MoviePoster = styled.div`
-    width: 500px;
-    height: 350px;
+    width: 400px;
+    height: 600px;
     background-image: url('${props => `https://image.tmdb.org/t/p/w500/${props.posterPath}`}');
     background-size: cover;
 `;
 
 const MovieContentWrapper = styled.div`
-    // TODO
+    width: 30%;
+    color: white;
+    margin-left: 80px;
 `;
 
-const MainText = styled.p``; // TODO : title
+const MainText = styled.p`
+    font-size: 25px;
+    font-weight: bold;
+`;
 
-const SubText = styled.p``; // TODO : 평점, 개봉일ㅂ, 줄거리
+const SubText = styled.p`
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 25px;
+`;
 
-const OverViewBox = styled.div``;
+const OverViewBox = styled.div`
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 25px;
+`;
 
 export default MovieDetailPage;
