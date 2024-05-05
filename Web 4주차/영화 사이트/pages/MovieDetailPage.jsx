@@ -41,7 +41,7 @@ function MovieDetailPage() {
                     <SubText>평점 {movieDetail.vote_average}</SubText>
                     <SubText>개봉일 {movieDetail.release_date}</SubText>
                     <SubText>줄거리</SubText>
-                    <OverViewBox>{movieDetail.overview}</OverViewBox>
+                    <OverViewBox>{movieDetail.overview ? movieDetail.overview : "TMDB에서 제공하는 API에 상세 줄거리 정보가 없습니다."}</OverViewBox>
                 </MovieContentWrapper>
                             </MovieDetailWrapper>
         
@@ -62,7 +62,7 @@ const MovieDetailBox = styled.div`
 
 const Overlay = styled.div`
     position: absolute;
-    top: 30px;
+    top: 50px;
     left: 0;
     width: 100%;
     height: 100%;
