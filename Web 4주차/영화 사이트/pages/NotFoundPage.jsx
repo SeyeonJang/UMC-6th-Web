@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 function NotFoundPage() {
     return(
@@ -6,7 +7,7 @@ function NotFoundPage() {
             <h2>Ooops!</h2>
             <h4>예상치 못한 에러가 발생했습니다 Σ(O_O)</h4>
             <h4>Not Found . . . </h4>
-            <Button>메인으로 이동하기</Button>
+            <Link to="/main-page"><Button>메인으로 이동하기</Button></Link>
         </Wrapper>
     );
 }
