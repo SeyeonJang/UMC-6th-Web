@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import MovieComponent from '../components/MovieComponent';
-import MovieDetailComponent from '../components/MovieDetailComponent';
+import MovieComponent from './MovieComponent';
+import MovieDetailComponent from './MovieDetailComponent';
 import SpinnerComponent from './SpinnerComponent';
 
 function MoviesFetchComponent({address}) {
