@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Navigate replace to="/main-page" />} />
           <Route path='/main-page' element={<MainPage/>}/>
-          <Route path='/signup' elements={<SignUpPage/>}/>
+          <Route path='/signup' element={<SignUpPage/>}/>
           <Route path='/now-playing-page' element={<NowPlayingPage/>}/>
           <Route path='/popular-page' element={<PopularPage/>}/>
           <Route path='/top-rated-page' element={<TopRatedPage/>}/>
