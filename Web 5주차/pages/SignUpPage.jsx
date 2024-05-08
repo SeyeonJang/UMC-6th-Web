@@ -10,7 +10,7 @@ function SignUpPage() {
                 <MainText>회원가입 페이지</MainText>
                 <FormWrapper>
                     <InputBox type="text" id="name" placeholder="이름을 입력해주세요!"/>
-                    <AlertText></AlertText>
+                    {/* <AlertText></AlertText> */}
                     <InputBox type="text" id="email" placeholder="이메일을 입력해주세요!"/>
                     <InputBox type="number" id="age" placeholder="나이를 입력해주세요!"/>
                     <InputBox type="password" id="pw" placeholder="비밀번호를 입력해주세요!"/>
@@ -66,7 +66,7 @@ const InputBox = styled.input.attrs(props => ({
     }))`
     width: 60%;
     height: 30px;
-    margin-top: 35px;
+    margin-top: 25px;
     border: 2px solid white;
     border-radius: 20px;
     background-color: white;

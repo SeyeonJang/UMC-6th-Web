@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import MainPage from '../pages/MainPage';
 import SignUpPage from '../pages/SignUpPage';
+import LoginPage from '../pages/LoginPage';
 import NowPlayingPage from '../pages/NowPlayingPage';
 import PopularPage from '../pages/PopularPage';
 import TopRatedPage from '../pages/TopRatedPage';
@@ -23,6 +24,7 @@ function App() {
           <Route path='/' element={<Navigate replace to="/main-page" />} />
           <Route path='/main-page' element={<MainPage/>}/>
           <Route path='/signup' element={<SignUpPage/>}/>
+          <Route path='/login' element={<LoginPage/>}/>
           <Route path='/now-playing-page' element={<NowPlayingPage/>}/>
           <Route path='/popular-page' element={<PopularPage/>}/>
           <Route path='/top-rated-page' element={<TopRatedPage/>}/>
