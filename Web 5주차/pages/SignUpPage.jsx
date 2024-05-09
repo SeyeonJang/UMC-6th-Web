@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
     const [name, setName] = useState('');
@@ -15,6 +16,19 @@ function SignUpPage() {
     const [ageError, setAgeError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        if (isActive) {
+            console.log('이름:', name);
+            console.log('이메일:', email);
+            console.log('나이:', age);
+            console.log('비밀번호:', password);
+            console.log('비밀번호 확인:', confirmPassword);
+            navigate('/login');
+        }
+    };
 
     useEffect(() => {
         setNameError(!name ? '이름을 입력해주세요!' : '');
@@ -56,9 +70,9 @@ function SignUpPage() {
                     {passwordError && <AlertText>{passwordError}</AlertText>}
                     <InputBox type="password" placeholder="비밀번호 확인" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
                     {confirmPasswordError && <AlertText>{confirmPasswordError}</AlertText>}
-                    <SubmitButton isActive={isActive} disabled={!isActive} style={{backgroundColor: isActive ? 'orange' : 'white'}}>제출하기</SubmitButton>
+                    <SubmitButton isActive={isActive} disabled={!isActive} onClick={handleSubmit} style={{backgroundColor: isActive ? 'orange' : 'white'}}>제출하기</SubmitButton>
                 </FormWrapper>
-                
+
                 <SubTextWrapper>
                     <SubText1>이미 아이디가 있으신가요?</SubText1>
                     <SubText2>로그인 페이지로 이동하기</SubText2>
