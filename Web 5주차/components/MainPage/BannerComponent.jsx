@@ -8,7 +8,7 @@ function BannerComponent() {
 
 const WelcomeContainer = styled.div`
     width: 100%;
-    height: 20vh;
+    height: 15vh;
     background-color: rgb(19, 19, 19);
     margin: 0;
     color: white;
@@ -17,7 +17,7 @@ const WelcomeContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 `;
 
 export default BannerComponent;

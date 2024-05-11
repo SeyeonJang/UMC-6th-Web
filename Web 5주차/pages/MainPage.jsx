@@ -3,6 +3,8 @@ import React from 'react';
 import BannerComponent from '../components/MainPage/BannerComponent';
 
 function MainPage() {
+    const [searchedMovie, setSearchedMovie] = useState(null);
+
     return(
         <Wrapper>
             <BannerComponent/>
@@ -10,6 +12,10 @@ function MainPage() {
             <SearchContainer>
                 <SearchText>🎬 Find Your Movies!</SearchText>
                 <SearchInput/>
+                
+                <SearchOutputContainer>
+                
+                </SearchOutputContainer>
             </SearchContainer>
         </Wrapper>
     );
@@ -21,6 +27,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     padding: 0;
     margin: 0;
+    background-color: black;
 `;
 
 const SearchContainer = styled.div`
@@ -38,7 +45,7 @@ const SearchText = styled.div`
     color: white;
     font-size: 30px;
     font-weight: 600;
-    padding-top: 100px;
+    padding-top: 50px;
 `;
 
 const SearchInput = styled.input`
@@ -46,6 +53,16 @@ const SearchInput = styled.input`
     height: 50px;
     margin-top: 50px;
     border-radius: 50px;
+    padding-left: 20px;
+    font-size: 18px;
+`;
+
+const SearchOutputContainer = styled.div`
+    width: 60%;
+    height: 400px;
+    overflow: scroll;
+    margin-top: 20px;    
+    background-color: green;
 `;
 
 export default MainPage;
