@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SpinnerComponent from '../components/SpinnerComponent';
+import SpinnerComponent from '../../components/SpinnerComponent';
 
 function MovieDetailPage() {
     const { state } = useLocation();
