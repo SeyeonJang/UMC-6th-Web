@@ -1,9 +1,35 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import BannerComponent from '../components/MainPage/BannerComponent';
+import MovieComponent from '../components/MovieComponent';
 
 function MainPage() {
-    const [searchedMovie, setSearchedMovie] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        if (searchTerm) {
+            fetchMovies(searchTerm);
+        }
+    }, [searchTerm]);
+
+    const fetchMovies = (query) => {
+        const encodedQuery = encodeURIComponent(query); // 검색어 인코딩
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzcwN2Q5ZWM3ZTY2OGE5OTk4NjUzYTdhNjMzMzU0NCIsInN1YiI6IjY2MjUxZDVjMjIxYmE2MDE2MzEzNDVhMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fpocj-TMRKkVquXQ4yX-KtpHI7h6CZJVHAvDNdd_PO4'
+            }
+        };
+        
+        fetch(`https://api.themoviedb.org/3/search/movie?query=${encodedQuery}&include_adult=false&language=ko-KR&page=1`, options)
+            .then(response => response.json())
+            .then(response => {
+                setMovies(response.results);
+            })
+            .catch(err => console.error(err));
+    };
 
     return(
         <Wrapper>
@@ -11,10 +37,16 @@ function MainPage() {
 
             <SearchContainer>
                 <SearchText>🎬 Find Your Movies!</SearchText>
-                <SearchInput/>
-                
+                <SearchInput onChange={(e) => setSearchTerm(e.target.value)} />
+            
                 <SearchOutputContainer>
-                
+                    {movies.map(movie => (
+                        <MovieComponent 
+                            key={movie.id} 
+                            image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                            title={movie.title} 
+                            voteAverage={movie.vote_average} />
+                    ))}
                 </SearchOutputContainer>
             </SearchContainer>
         </Wrapper>
@@ -59,10 +91,14 @@ const SearchInput = styled.input`
 
 const SearchOutputContainer = styled.div`
     width: 60%;
-    height: 400px;
-    overflow: scroll;
-    margin-top: 20px;    
-    background-color: green;
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 20px;
+    height: auto;
+    overflow-y: auto;
+    margin-top: 20px;
+    // background-color: green;
+    justify-content: start;
 `;
 
 export default MainPage;
