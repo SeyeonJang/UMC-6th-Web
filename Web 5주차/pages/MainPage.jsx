@@ -41,11 +41,13 @@ function MainPage() {
             
                 <SearchOutputContainer>
                     {movies.map(movie => (
-                        <MovieComponent 
-                            key={movie.id} 
-                            image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                            title={movie.title} 
-                            voteAverage={movie.vote_average} />
+                        <MovieItem>
+                            <MovieComponent 
+                                key={movie.id} 
+                                image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                title={movie.title} 
+                                voteAverage={movie.vote_average} />
+                        </MovieItem>
                     ))}
                 </SearchOutputContainer>
             </SearchContainer>
@@ -91,14 +93,26 @@ const SearchInput = styled.input`
 
 const SearchOutputContainer = styled.div`
     width: 60%;
-    display: flex; 
-    flex-wrap: wrap;
-    gap: 20px;
     height: auto;
-    overflow-y: auto;
-    margin-top: 20px;
-    // background-color: green;
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: start;
+    gap: 15px;
+    overflow-y: scroll;
+    max-height: 400px;
+    margin-top: 30px;
+    padding-left: 30px;
+`;
+
+const MovieItem = styled.div`
+    flex-basis: calc(20% - 10px);
+    display: flex;
+    height: 332px;
+    position: relative;
+    margin-bottom: 30px;
+    margin-right: 40px;
+    padding: 0;
 `;
 
 export default MainPage;
