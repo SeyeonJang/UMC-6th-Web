@@ -103,6 +103,18 @@ const SearchOutputContainer = styled.div`
     max-height: 400px;
     margin-top: 30px;
     padding-left: 30px;
+    &::-webkit-scrollbar {
+        width: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.01);
+        border-radius: 25px;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    &::-webkit-scrollbar-thumb {
+        background: orange;
+        border-radius: 15px;
+    }
 `;
 
 const MovieItem = styled.div`
