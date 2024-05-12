@@ -5,11 +5,11 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import MainPage from '../pages/MainPage';
 import SignUpPage from '../pages/SignUpPage';
 import LoginPage from '../pages/LoginPage';
-import NowPlayingPage from '../pages/NowPlayingPage';
-import PopularPage from '../pages/PopularPage';
-import TopRatedPage from '../pages/TopRatedPage';
-import UpComing from '../pages/UpComing';
-import MovieDetailPage from '../pages/MovieDetailPage';
+import NowPlayingPage from '../pages/MoviePages/NowPlayingPage';
+import PopularPage from '../pages/MoviePages/PopularPage';
+import TopRatedPage from '../pages/MoviePages/TopRatedPage';
+import UpComing from '../pages/MoviePages/UpComing';
+import MovieDetailPage from '../pages/MoviePages/MovieDetailPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 // App component

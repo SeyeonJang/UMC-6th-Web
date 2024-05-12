@@ -1,4 +1,4 @@
-import MoviesFetchComponent from '../components/MoviesFetchComponent';
+import MoviesFetchComponent from '../../components/MoviesFetchComponent';
 
 function UpComing() {
     const address = 'https://api.themoviedb.org/3/movie/upcoming?language=ko-KR&page=1';
