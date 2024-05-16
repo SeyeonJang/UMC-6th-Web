@@ -7,11 +7,31 @@ function MainPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [movies, setMovies] = useState([]);
 
+    const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
     useEffect(() => {
-        if (searchTerm) {
-            fetchMovies(searchTerm);
+        if (debouncedSearchTerm) { 
+            fetchMovies(debouncedSearchTerm);
         }
-    }, [searchTerm]);
+    }, [debouncedSearchTerm]); 
+
+    function useDebounce(value, delay) {
+        const [debouncedValue, setDebouncedValue] = useState(value);
+    
+        useEffect(() => {
+            // 설정된 지연 시간 후에 debouncedValue를 업데이트
+            const handler = setTimeout(() => {
+                setDebouncedValue(value);
+            }, delay);
+    
+            // 컴포넌트가 언마운트되거나 value가 변경될 때마다 clearTimeout을 호출하여 이전 타이머를 제거
+            return () => {
+                clearTimeout(handler);
+            };
+        }, [value, delay]);
+    
+        return debouncedValue;
+    }
 
     const fetchMovies = (query) => {
         const encodedQuery = encodeURIComponent(query); // 검색어 인코딩
