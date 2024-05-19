@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 function CastComponent({image, name}) {
     const firstName = name.split(' ')[0];
+    const imageUrl = image.endsWith('null') ? `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz7ztleRwzXhFdiwBYqZ8cib9RvEsukVVUS3niN1YQ&s` : image;
 
     return(
         <CastBox>
-            <Image src={image} alt={name}/>
+            <Image src={imageUrl} alt={name}/>
             <NameText>{firstName}</NameText>
         </CastBox>
     );
