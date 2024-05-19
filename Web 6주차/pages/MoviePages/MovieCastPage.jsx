@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import SpinnerComponent from '../../components/SpinnerComponent';
 
 function MovieCastPage() {
-    const { state } = useLocation();
+    const { movieId } = useParams();
     const [movieDetail, setMovieDetail] = useState(null);
 
     useEffect(() => {
-        if (state && state.id) {
+        if (movieId) {
             const options = {
                 method: 'GET',
                 headers: {
@@ -17,14 +17,14 @@ function MovieCastPage() {
                 }
             };
 
-            fetch(`https://api.themoviedb.org/3/movie/${state.id}?language=ko-KR`, options)
+            fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`, options)
                 .then(response => response.json())
                 .then(data => {
                     setMovieDetail(data);
                 })
                 .catch(err => console.error(err));
         }
-    }, [state]);
+    }, [movieId]);
 
     function renderStars(voteAverage) {
         const starsCount = Math.floor(voteAverage);
@@ -37,25 +37,38 @@ function MovieCastPage() {
 
     return (
         !movieDetail 
-        ? <SpinnerComponent/>
-        : <MovieDetailBox posterPath={movieDetail.backdrop_path} alt={movieDetail.title}>
-            <Overlay/>
-            
-            <MovieDetailWrapper>
-                <MoviePoster posterPath={movieDetail.poster_path}/>
+        ? <>
+            <p>데이터를 받아오는 중입니다...</p>
+        </>
+        : <Wrapper>
+            <MovieDetailBox posterPath={movieDetail.backdrop_path} alt={movieDetail.title}>
+                <Overlay/>
+                
+                <MovieDetailWrapper>
+                    <MoviePoster posterPath={movieDetail.poster_path}/>
 
-                <MovieContentWrapper>
-                    <MainText>{movieDetail.title}</MainText>
-                    <SubText>평점 {renderStars(movieDetail.vote_average)}</SubText>
-                    <SubText>개봉일 {movieDetail.release_date}</SubText>
-                    <SubText>줄거리</SubText>
-                    <OverViewBox>{movieDetail.overview ? movieDetail.overview : "TMDB에서 제공하는 API에 상세 줄거리 정보가 없습니다."}</OverViewBox>
-                </MovieContentWrapper>
-                            </MovieDetailWrapper>
-        
-        </MovieDetailBox>
+                    <MovieContentWrapper>
+                        <MainText>{movieDetail.title}</MainText>
+                        <SubText>평점 {renderStars(movieDetail.vote_average)}</SubText>
+                        <SubText>개봉일 {movieDetail.release_date}</SubText>
+                        <SubText>줄거리</SubText>
+                        <OverViewBox>{movieDetail.overview ? movieDetail.overview : "TMDB에서 제공하는 API에 상세 줄거리 정보가 없습니다."}</OverViewBox>
+                    </MovieContentWrapper>
+                </MovieDetailWrapper>
+            
+            </MovieDetailBox>
+
+            <MovieCastBox>
+
+            </MovieCastBox>
+        </Wrapper>
     );
 }
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
 
 const MovieDetailBox = styled.div`
     width: 100vw;
@@ -116,6 +129,13 @@ const OverViewBox = styled.div`
     font-size: 16px;
     font-weight: 300;
     margin-top: 25px;
+`;
+
+const MovieCastBox = styled.div`
+    width: 100vw;
+    height: auto;
+    min-height: 20vh;
+    background-color: black;
 `;
 
 export default MovieCastPage;
