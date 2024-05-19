@@ -64,6 +64,7 @@ function MainPage() {
                         <MovieItem>
                             <MovieComponent 
                                 key={movie.id} 
+                                id={movie.id}
                                 image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                                 title={movie.title} 
                                 voteAverage={movie.vote_average} />

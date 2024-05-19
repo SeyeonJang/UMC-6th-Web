@@ -11,6 +11,7 @@ import TopRatedPage from '../pages/MoviePages/TopRatedPage';
 import UpComing from '../pages/MoviePages/UpComing';
 import MovieDetailPage from '../pages/MoviePages/MovieDetailPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import MovieCastPage from '../pages/MoviePages/MovieCastPage';
 
 // App component
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/popular-page' element={<PopularPage/>}/>
           <Route path='/top-rated-page' element={<TopRatedPage/>}/>
           <Route path='/up-coming-page' element={<UpComing/>}/>
+          <Route path='/movie/:movieId' element={<MovieCastPage/>}/>
           <Route path='/movie/:originalTitle' element={<MovieDetailPage/>}/>
           <Route path='/*' element={<NotFoundPage/>}/>
         </Routes>

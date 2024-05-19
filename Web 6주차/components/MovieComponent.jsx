@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 // Styled components
 const MovieBox = styled.div`
@@ -42,9 +43,15 @@ const PaddingBox = styled.div`
 `;
 
 // MovieComponent
-function MovieComponent({image, title, voteAverage}) {
+function MovieComponent({id, image, title, voteAverage}) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/movie/${id}}`, { state: {id:id} });
+    }
+
     return (
-        <MovieBox>
+        <MovieBox onClick={handleClick}>
             <Image src={image} alt={title} />
             <BottomBox>
                 <PaddingBox />
