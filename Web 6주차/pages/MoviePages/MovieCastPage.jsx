@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import SpinnerComponent from '../../components/SpinnerComponent';
+import CastComponent from '../../components/CastComponent';
 
 function MovieCastPage() {
     const { movieId } = useParams();
     const [movieDetail, setMovieDetail] = useState(null);
+    const [cast, setCast] = useState([])
 
     useEffect(() => {
         if (movieId) {
@@ -21,6 +22,13 @@ function MovieCastPage() {
                 .then(response => response.json())
                 .then(data => {
                     setMovieDetail(data);
+                })
+                .catch(err => console.error(err));
+
+            fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`, options)
+                .then(response => response.json())
+                .then(data => {
+                    setCast(data.cast); // 출연진 정보를 state에 저장
                 })
                 .catch(err => console.error(err));
         }
@@ -59,7 +67,17 @@ function MovieCastPage() {
             </MovieDetailBox>
 
             <MovieCastBox>
-
+                <CastText>출연진 및 제작진</CastText>
+                <CastWrapper>
+                    {cast.map((member) => (
+                        <MovieItem key={member.id}>
+                            <CastComponent 
+                                id={member.id}
+                                image={`https://image.tmdb.org/t/p/w500/${member.profile_path}`}
+                                name={member.name}/>
+                        </MovieItem>
+                    ))}
+                </CastWrapper>
             </MovieCastBox>
         </Wrapper>
     );
@@ -136,6 +154,36 @@ const MovieCastBox = styled.div`
     height: auto;
     min-height: 20vh;
     background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-contents: center;
+`;
+
+const CastText = styled.p`
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    margin: 60px 0px;
+`;
+
+const CastWrapper = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+`;
+
+const MovieItem = styled.div`
+    flex-basis: calc(5% - 3px);
+    display: flex;
+    height: 100px;
+    position: relative;
+    margin-bottom: 30px;
+    margin-left: 40px;
+    padding: 0;
 `;
 
 export default MovieCastPage;
