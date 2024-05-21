@@ -33,6 +33,10 @@ function SignUpPage() {
         }
     };
 
+    const moveToLogin = () => {
+        navigate('/login');
+    }
+
     useEffect(() => {
         setNameError(!name ? '이름을 입력해주세요!' : '');
         setIdError(!id ? '아이디를 입력해주세요!' : '');
@@ -58,6 +62,7 @@ function SignUpPage() {
     }, [name, id, email, age, password, confirmPassword, nameError, idError, emailError, ageError, passwordError, confirmPasswordError]);
 
 
+
     return (
         <Container>
             <SignupContainer>
@@ -81,7 +86,7 @@ function SignUpPage() {
 
                 <SubTextWrapper>
                     <SubText1>이미 아이디가 있으신가요?</SubText1>
-                    <SubText2>로그인 페이지로 이동하기</SubText2>
+                    <SubText2 onClick={moveToLogin}>로그인 페이지로 이동하기</SubText2>
                 </SubTextWrapper>
             </SignupContainer>
         </Container>
