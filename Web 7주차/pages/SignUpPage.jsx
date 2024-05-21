@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
     const [name, setName] = useState('');
+    const [id, setId] = useState('');
     const [email, setEmail] = useState('');
     const [age, setAge] = useState('');
     const [password, setPassword] = useState('');
@@ -12,6 +13,7 @@ function SignUpPage() {
     const [isActive, setIsActive] = useState(false);
 
     const [nameError, setNameError] = useState('');
+    const [idError, setIdError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [ageError, setAgeError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -22,6 +24,7 @@ function SignUpPage() {
     const handleSubmit = () => {
         if (isActive) {
             console.log('이름:', name);
+            console.log('아이디:', id);
             console.log('이메일:', email);
             console.log('나이:', age);
             console.log('비밀번호:', password);
@@ -32,6 +35,7 @@ function SignUpPage() {
 
     useEffect(() => {
         setNameError(!name ? '이름을 입력해주세요!' : '');
+        setIdError(!id ? '아이디를 입력해주세요!' : '');
         setEmailError(!email ? '이메일을 입력해주세요!' : !email.includes('@') ? '이메일 형식에 맞춰 다시 입력해주세요!' : '');
         setAgeError(
             !age ? '나이를 입력해주세요!' :
@@ -50,8 +54,8 @@ function SignUpPage() {
             password !== confirmPassword ? '비밀번호가 일치하지 않습니다.' : ''
         );
 
-        setIsActive(!nameError && !emailError && !ageError && !passwordError && !confirmPasswordError);
-    }, [name, email, age, password, confirmPassword, nameError, emailError, ageError, passwordError, confirmPasswordError]);
+        setIsActive(!nameError && !idError && !emailError && !ageError && !passwordError && !confirmPasswordError);
+    }, [name, id, email, age, password, confirmPassword, nameError, idError, emailError, ageError, passwordError, confirmPasswordError]);
 
 
     return (
@@ -62,6 +66,8 @@ function SignUpPage() {
                 <FormWrapper>
                     <InputBox type="text" placeholder="이름을 입력해주세요!" value={name} onChange={(e) => setName(e.target.value)}/>
                     {nameError && <AlertText>{nameError}</AlertText>}
+                    <InputBox type="text" placeholder="아이디를 입력해주세요!" value={id} onChange={(e) => setId(e.target.value)}/>
+                    {idError && <AlertText>{idError}</AlertText>}
                     <InputBox type="text" placeholder="이메일을 입력해주세요!" value={email} onChange={(e) => setEmail(e.target.value)}/>
                     {emailError && <AlertText>{emailError}</AlertText>}
                     <InputBox type="number" placeholder="나이를 입력해주세요!" value={age} onChange={(e) => setAge(e.target.value)}/>
