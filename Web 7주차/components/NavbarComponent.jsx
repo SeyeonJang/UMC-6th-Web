@@ -23,7 +23,7 @@ const MainText = styled.p`
 `;
 
 const MenuBox = styled.div`
-    width: 500px;
+    width: 600px;
     flex-direction: row;
     display: flex;
     justify-content: end;
@@ -70,7 +70,7 @@ function NavbarComponent() {
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
-                {/* <Link to="/main-page"><LoginText onClick={handleLoginClick}>{isLoggedIn ? '로그아웃' : '로그인'}</LoginText></Link> */}
+                <Link to="/login"><LoginText onClick={handleLoginClick}>{isLoggedIn ? '로그아웃' : '로그인'}</LoginText></Link>
                 <Link to="/signup"><MenuText isActive={activeMenu === 'signup'} onClick={() => handleMenuClick('signup')}>회원가입</MenuText></Link>
                 <Link to="/popular-page"><MenuText isActive={activeMenu === 'popular'} onClick={() => handleMenuClick('popular')}>Popular</MenuText></Link>
                 <Link to="/now-playing-page"><MenuText isActive={activeMenu === 'now-playing'} onClick={() => handleMenuClick('now-playing')}>Now Playing</MenuText></Link>
