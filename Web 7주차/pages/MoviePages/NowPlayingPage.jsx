@@ -1,10 +1,11 @@
-import MoviesFetchComponent from '../../components/MoviesFetchComponent';
+import InfiniteScrollFetchComponent from '../../components/InfiniteScrollFetchComponent';
 
 function NowPlayingPage() {
-    const address = 'https://api.themoviedb.org/3/movie/now_playing?language=ko-KRx&page=1';
+    const address = 'https://api.themoviedb.org/3/movie/now_playing?language=ko-KR';
+    
 
     return (
-        <MoviesFetchComponent address={address}/>
+        <InfiniteScrollFetchComponent address={address}/>
     );
 }
 
