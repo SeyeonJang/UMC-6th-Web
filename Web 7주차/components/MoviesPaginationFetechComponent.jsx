@@ -97,6 +97,7 @@ function MoviesPaginationFetchComponent({address}) {
                     activeClassName={"active"}
                     marginPagesDisplayed={0}
                     forcePage = {currentPage}
+                    currentPage={currentPage}
                 /> 
             </LabelWrapper>   
             </Wrapper>
@@ -158,8 +159,11 @@ const Pagination = styled(ReactPaginate)`
     justify-content: space-around;
     list-style-type: none;
     padding: 0 5rem;
-    li.previous a, li.next a { // 왼쪽, 오른쪽
+    li.next a { // 오른쪽
         color: white;
+    }
+    li.previous a { // 왼쪽
+        color: ${({ currentPage }) => (currentPage === 0 ? 'rgba(255, 255, 255, 0.2)' : 'white')};
     }
     li a { // 페이지번호
         color: white;
