@@ -10,12 +10,12 @@ function MoviesPaginationFetchComponent({address}) {
     const [movieData, setMovieData] = useState([]);
     const [spinner, setSpinner] = useState(false);
     const [pageCount, setPageCount] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
 
     const fetchData = async (page) => {
         try {
             setSpinner(true);
-            const response = await fetch(`${address}&page=${page}`, {
+            const response = await fetch(`${address}&page=${page+1}`, {
                 method: 'GET',
                 headers: {
                     accept: 'application/json',
@@ -64,8 +64,10 @@ function MoviesPaginationFetchComponent({address}) {
     }, [currentPage]);
 
     const handlePageClick = (event) => {
-        const selectedPage = event.selected + 1;
+        const selectedPage = event.selected;
         setCurrentPage(selectedPage);
+        console.log('현재 페이지 :', currentPage);
+        console.log('selectedPage :',selectedPage);
     };
 
     return(
@@ -82,17 +84,21 @@ function MoviesPaginationFetchComponent({address}) {
                     </MovieItem>
                 ))}
             </MovieContainer>
-            <ReactPaginate
-                breakLabel="..."
-                nextLabel=">"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={1}
-                pageCount={pageCount}
-                previousLabel="<"
-                renderOnZeroPageCount={null}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-            />    
+            <LabelWrapper>
+                <Pagination
+                    // breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={0}
+                    pageCount={pageCount}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    containerClassName={"Pagination"}
+                    activeClassName={"active"}
+                    marginPagesDisplayed={0}
+                    forcePage = {currentPage}
+                /> 
+            </LabelWrapper>   
             </Wrapper>
     );
 }
@@ -135,5 +141,29 @@ const MovieItem = styled.div`
 const MovieDetailWrapper = styled.div`
     display: none;
 `;
+
+const LabelWrapper = styled.div`
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+const Pagination = styled(ReactPaginate)`
+    width: 300px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0 5rem;
+    li.previous a, li.next a { // 왼쪽, 오른쪽
+        color: white;
+    }
+    li a { // 페이지번호
+        color: white;
+    }
+    `;
 
 export default MoviesPaginationFetchComponent;
