@@ -6,7 +6,7 @@ import MovieComponent from './MovieComponent';
 import MovieDetailComponent from './MovieDetailComponent';
 import SpinnerComponent from './SpinnerComponent';
 
-function MoviesPaginationFetchComponent({address}) {
+function PaginationFetchComponent({address}) {
     const [movieData, setMovieData] = useState([]);
     const [spinner, setSpinner] = useState(false);
     const [pageCount, setPageCount] = useState(0);
@@ -170,4 +170,4 @@ const Pagination = styled(ReactPaginate)`
     }
     `;
 
-export default MoviesPaginationFetchComponent;
+export default PaginationFetchComponent;

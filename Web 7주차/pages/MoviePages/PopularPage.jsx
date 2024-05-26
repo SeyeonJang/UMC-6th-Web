@@ -1,11 +1,11 @@
-import MoviesPaginationFetchComponent from '../../components/MoviesPaginationFetechComponent';
+import PaginationFetchComponent from '../../components/PaginationFetchComponent';
 
 function PopularPage() {
     // const address = 'https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1';
     const address = 'https://api.themoviedb.org/3/movie/popular?language=ko-KR';
 
     return(
-        <MoviesPaginationFetchComponent address={address}/>
+        <PaginationFetchComponent address={address}/>
     );
 }
 
