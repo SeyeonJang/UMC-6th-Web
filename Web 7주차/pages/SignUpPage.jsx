@@ -30,7 +30,6 @@ function SignUpPage() {
             console.log('나이:', age);
             console.log('비밀번호:', password);
             console.log('비밀번호 확인:', confirmPassword);
-            navigate('/login');
 
             const requestBody = {
                 name: name,
@@ -56,9 +55,11 @@ function SignUpPage() {
                     if (error.response) {
                         // 서버에서 응답한 에러 처리
                         if (error.response.status === 409) {
+                            console.log(error.response.status, error.response.message);
                             alert('이미 존재하는 아이디입니다.');
                         } else if (error.response.status === 400) {
                             alert('비밀번호가 일치하지 않습니다.');
+                            console.log(error.response.status, error.response.message);
                         } else {
                             // 기타 서버 에러 처리
                             alert(`서버 에러: ${error.response.status}`);

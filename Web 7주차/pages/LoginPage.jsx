@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function LoginPage() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [isActive, setIsActive] = useState(false);
 
     const [idError, setIdError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIdError(!id ? '아이디를 입력해주세요!' : '');
@@ -16,7 +21,44 @@ function LoginPage() {
             password.length > 12 ? '비밀번호는 최대 12자리 입니다.' :
             !/[A-Za-z]/.test(password) || !/\d/.test(password) || !/[!@#$%^&*]/.test(password) ? '비밀번호는 영어, 숫자, 특수문자를 포함해주세요.' : ''
         );
+        setIsActive(!idError && !passwordError);
     }, [id, password, idError, passwordError]);
+
+    const handleSubmit = () => {
+        if (isActive) {
+            console.log('아이디:',id);
+            console.log('비밀번호:', password);
+
+            const requestBody = {
+                username: id,
+                password: password
+            };
+    
+            axios.post('http://localhost:8080/auth/login', requestBody)
+                .then(response => {
+                    if (response.status === 200) {
+                        console.log(response.data);
+                        navigate('/');
+                    } else {
+                        console.error('Sign-up failed with status:', response.status);
+                    }
+                })
+                .catch(error => {
+                    if (error.response) {
+                        if (error.response.status === 401) {
+                            console.log(error.response.status, error.response.message);
+                            alert('로그인 실패! 아이디와 비밀번호가 일치하지 않습니다.');
+                        } else {
+                            alert(`서버 에러: ${error.response.status}`);
+                        }
+                    } else if (error.request) {
+                        console.error('No response was received');
+                    } else {
+                        console.error('Error', error.message);
+                    }
+                });
+        }
+    }
 
     return(
         <Container>
@@ -27,7 +69,7 @@ function LoginPage() {
                     {idError && <AlertText>{idError}</AlertText>}
                     <InputBox type="password" id="login-pw" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     {passwordError && <AlertText>{passwordError}</AlertText>}
-                    <SubmitButton>로그인</SubmitButton>
+                    <SubmitButton isActive={isActive} disabled={!isActive} onClick={handleSubmit} style={{backgroundColor: isActive ? 'orange' : 'white'}}>로그인</SubmitButton>
                 </FormWrapper>
             </LoginContainer>
         </Container>
