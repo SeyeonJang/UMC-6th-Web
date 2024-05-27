@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUpPage() {
     const [name, setName] = useState('');
@@ -29,7 +30,48 @@ function SignUpPage() {
             console.log('나이:', age);
             console.log('비밀번호:', password);
             console.log('비밀번호 확인:', confirmPassword);
-            navigate('/login');
+
+            const requestBody = {
+                name: name,
+                email: email,
+                age: age,
+                username: id,
+                password: password,
+                passwordCheck: confirmPassword,
+            };
+    
+            axios.post('http://localhost:8080/auth/signup', requestBody)
+                .then(response => {
+                    if (response.status === 201) {
+                        console.log(response.data);
+                        alert('회원가입이 완료됐어요!');
+                        navigate('/login');
+                    } else {
+                        console.error('Sign-up failed with status:', response.status);
+                    }
+                })
+                .catch(error => {
+                    // 에러 처리
+                    if (error.response) {
+                        // 서버에서 응답한 에러 처리
+                        if (error.response.status === 409) {
+                            console.log(error.response.status, error.response.message);
+                            alert('이미 존재하는 아이디입니다.');
+                        } else if (error.response.status === 400) {
+                            alert('비밀번호가 일치하지 않습니다.');
+                            console.log(error.response.status, error.response.message);
+                        } else {
+                            // 기타 서버 에러 처리
+                            alert(`서버 에러: ${error.response.status}`);
+                        }
+                    } else if (error.request) {
+                        // 요청이 이루어졌으나 응답을 받지 못한 경우
+                        console.error('No response was received');
+                    } else {
+                        // 요청 설정 중 발생한 에러 처리
+                        console.error('Error', error.message);
+                    }
+                });
         }
     };
 
