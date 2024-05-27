@@ -7,6 +7,7 @@ function LoginPage() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [isActive, setIsActive] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [idError, setIdError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -33,11 +34,13 @@ function LoginPage() {
                 username: id,
                 password: password
             };
-    
+
+            setLoading(true);
             axios.post('http://localhost:8080/auth/login', requestBody)
                 .then(response => {
                     if (response.status === 200) {
-                        console.log(response.data);
+                        const token = response.data.token;
+                        localStorage.setItem('token', token);
                         navigate('/');
                     } else {
                         console.error('Sign-up failed with status:', response.status);
@@ -56,23 +59,28 @@ function LoginPage() {
                     } else {
                         console.error('Error', error.message);
                     }
+                })
+                .finally(() => {
+                    setLoading(false);
                 });
         }
-    }
+    };
 
     return(
-        <Container>
-            <LoginContainer>
-                <MainText>로그인 페이지</MainText>
-                <FormWrapper>
-                    <InputBox type="text" id="login-id" placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)}/>
-                    {idError && <AlertText>{idError}</AlertText>}
-                    <InputBox type="password" id="login-pw" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    {passwordError && <AlertText>{passwordError}</AlertText>}
-                    <SubmitButton isActive={isActive} disabled={!isActive} onClick={handleSubmit} style={{backgroundColor: isActive ? 'orange' : 'white'}}>로그인</SubmitButton>
-                </FormWrapper>
-            </LoginContainer>
-        </Container>
+        loading 
+            ? <Banner>로딩 중...</Banner>
+            : <Container>
+                <LoginContainer>
+                    <MainText>로그인 페이지</MainText>
+                    <FormWrapper>
+                        <InputBox type="text" id="login-id" placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)}/>
+                        {idError && <AlertText>{idError}</AlertText>}
+                        <InputBox type="password" id="login-pw" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        {passwordError && <AlertText>{passwordError}</AlertText>}
+                        <SubmitButton isActive={isActive} disabled={!isActive} onClick={handleSubmit} style={{backgroundColor: isActive ? 'orange' : 'white'}}>로그인</SubmitButton>
+                    </FormWrapper>
+                </LoginContainer>
+            </Container>
     );
 }
 
@@ -140,6 +148,11 @@ const SubmitButton = styled.button`
     border-radius: 23px;
     font-size: 17px;
     margin-top: 40px;
+`;
+
+const Banner = styled.div`
+    font-size: 20px;
+    font-color: white;
 `;
 
 
