@@ -8,24 +8,45 @@ function BannerComponent() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
-            axios.get('http://localhost:8080/auth/me', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    setUserName(response.data.name);
-                } else {
-                    console.error('유저 정보 가져오기 실패:', response.status);
-                }
-            })
-            .catch(error => {
-                console.error('유저 정보 가져오기 오류:', error);
-            })
-        }
+        
+        const fetchUserData = () => {
+            if (token) {
+                axios.get('http://localhost:8080/auth/me', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        setUserName(response.data.name);
+                    } else {
+                        console.error('유저 정보 가져오기 실패:', response.status);
+                    }
+                })
+                .catch(error => {
+                    console.error('유저 정보 가져오기 오류:', error);
+                });
+            } else {
+                // 토큰이 없으면 name을 비워줌
+                setUserName('');
+            }
+        };
+    
+        // 유저 데이터를 최초로 가져옴
+        fetchUserData();
+        // localStorage 변경을 감지하는 이벤트 리스너 추가
+        const handleStorageChange = (event) => {
+            if (event.key === 'token') {
+                fetchUserData();
+            }
+        };
+        window.addEventListener('storage', handleStorageChange);
+        // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
     }, []);
+    
 
     return(
         <WelcomeContainer>

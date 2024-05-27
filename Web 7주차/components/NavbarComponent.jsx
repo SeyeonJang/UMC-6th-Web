@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // Styled components
 const Navbar = styled.div`
@@ -58,7 +59,40 @@ function NavbarComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const fetchUserData = () => {
+            if (token) {
+                axios.get('http://localhost:8080/auth/me', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        setIsLoggedIn(true);
+                        // setUserName(response.data.name);
+                    } else {
+                        console.error('유저 정보 가져오기 실패:', response.status);
+                        setIsLoggedIn(false);
+                    }
+                })
+                .catch(error => {
+                    setIsLoggedIn(false);
+                    console.error('유저 정보 가져오기 오류:', error);
+                });
+            } else {
+                setIsLoggedIn(false);
+            }
+        };
+        fetchUserData();
+    });
+
     const handleLoginClick = () => {
+        if (isLoggedIn) {
+            localStorage.removeItem('token');
+        }
+        fetchUserData();
         setIsLoggedIn(!isLoggedIn);
     };
 
@@ -70,8 +104,14 @@ function NavbarComponent() {
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
-                <Link to="/login"><LoginText onClick={handleLoginClick}>{isLoggedIn ? '로그아웃' : '로그인'}</LoginText></Link>
-                <Link to="/signup"><MenuText isActive={activeMenu === 'signup'} onClick={() => handleMenuClick('signup')}>회원가입</MenuText></Link>
+                {isLoggedIn ? (
+                    <LoginText onClick={handleLoginClick}>로그아웃</LoginText>
+                ) : (
+                    <>
+                        <Link to="/login"><LoginText onClick={handleLoginClick}>로그인</LoginText></Link>
+                        <Link to="/signup"><MenuText isActive={activeMenu === 'signup'} onClick={() => handleMenuClick('signup')}>회원가입</MenuText></Link>
+                    </>
+                )}
                 <Link to="/popular-page"><MenuText isActive={activeMenu === 'popular'} onClick={() => handleMenuClick('popular')}>Popular</MenuText></Link>
                 <Link to="/now-playing-page"><MenuText isActive={activeMenu === 'now-playing'} onClick={() => handleMenuClick('now-playing')}>Now Playing</MenuText></Link>
                 <Link to="/top-rated-page"><MenuText isActive={activeMenu === 'top-rated'} onClick={() => handleMenuClick('top-rated')}>Top Rated</MenuText></Link>
