@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import BannerComponent from '../components/MainPage/BannerComponent';
 import MovieComponent from '../components/MovieComponent';
+import media from '../styles/media';
 
 function MainPage() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -101,6 +102,10 @@ const SearchText = styled.div`
     font-size: 30px;
     font-weight: 600;
     padding-top: 50px;
+
+    ${media.mobile`
+        font-size: 23px;
+    `}
 `;
 
 const SearchInput = styled.input`
@@ -110,6 +115,11 @@ const SearchInput = styled.input`
     border-radius: 50px;
     padding-left: 20px;
     font-size: 18px;
+
+    ${media.mobile`
+        width: 80%;
+        font-size: 15px;
+    `}
 `;
 
 const SearchOutputContainer = styled.div`
