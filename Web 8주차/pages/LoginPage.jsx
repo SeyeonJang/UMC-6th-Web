@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import media from '../styles/media';
 
 function LoginPage() {
     const [id, setId] = useState('');
@@ -100,12 +101,20 @@ const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    ${media.mobile`
+        width: 80%;
+    `}
 `;
 
 const MainText = styled.p`
     font-size: 25px;
     font-weight: 600;
     color: white;
+
+    ${media.mobile`
+        font-size: 22px;
+    `}
 `;
 
 const FormWrapper = styled.div`
@@ -118,19 +127,25 @@ const FormWrapper = styled.div`
 `;
 
 const InputBox = styled.input.attrs(props => ({
-    type: props.type || 'text', // 기본값을 'text'로 설정
-    id: props.id,
-    placeholder: props.placeholder // 힌트 텍스트를 props로 받음
-}))`
-width: 60%;
-height: 30px;
-margin-top: 25px;
-border: 2px solid white;
-border-radius: 20px;
-background-color: white;
-padding: 5px 15px;
-font-size: 17px;
-outline-color: orange;
+        type: props.type || 'text', // 기본값을 'text'로 설정
+        id: props.id,
+        placeholder: props.placeholder // 힌트 텍스트를 props로 받음
+    }))`
+    width: 60%;
+    height: 30px;
+    margin-top: 25px;
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: white;
+    padding: 5px 15px;
+    font-size: 17px;
+    outline-color: orange;
+
+    ${media.mobile`
+        width: 100%;
+        font-size: 15px;
+        height: 25px;
+    `}
 `;
 
 const AlertText = styled.div`
@@ -138,6 +153,11 @@ const AlertText = styled.div`
     color: red;
     margin: 5px 0px 0px 0px;
     padding-left: 25px;
+
+    ${media.mobile`
+        font-size: 13px;
+        padding-left: 0px;
+    `}
 `;
 
 const SubmitButton = styled.button`
@@ -148,6 +168,12 @@ const SubmitButton = styled.button`
     border-radius: 23px;
     font-size: 17px;
     margin-top: 40px;
+
+    ${media.mobile`
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+    `}
 `;
 
 const Banner = styled.div`

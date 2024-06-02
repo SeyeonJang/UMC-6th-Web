@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import media from '../../styles/media';
 
 function BannerComponent() {
     const [name, setUserName] = useState('');
@@ -68,10 +67,6 @@ const WelcomeContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding-bottom: 15px;
-
-    ${media.mobile`
-        font-size: 12px;
-    `}
 `;
 
 export default BannerComponent;
