@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import media from '../styles/media';
 
 function SignUpPage() {
     const [name, setName] = useState('');
@@ -142,7 +143,9 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -50px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    background-color: black;
 `;
 
 const SignupContainer = styled.div`
@@ -152,6 +155,9 @@ const SignupContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    ${media.mobile`
+        width: 100%;
+    `}
 `;
 
 const MainText = styled.p`
@@ -183,6 +189,12 @@ const InputBox = styled.input.attrs(props => ({
     padding: 5px 15px;
     font-size: 17px;
     outline-color: orange;
+    ${media.mobile`
+        width: 80%;
+        height: 25px;
+        font-size: 15px;
+        margin-top: 20px;
+    `}
 `;
 
 const AlertText = styled.div`
@@ -190,6 +202,11 @@ const AlertText = styled.div`
     color: red;
     margin: 5px 0px 0px 0px;
     padding-left: 25px;
+    ${media.mobile`
+        font-size: 13px;
+        padding-left: 0px;
+        width: 80%;
+    `}
 `;
 
 const SubmitButton = styled.button`
@@ -198,6 +215,11 @@ const SubmitButton = styled.button`
     border-radius: 23px;
     font-size: 17px;
     margin-top: 40px;
+    ${media.mobile`
+        font-size: 15px;
+        height: 45px;
+        width: 90%;
+    `}
 `;
 
 const SubTextWrapper = styled.div`
@@ -208,18 +230,27 @@ const SubTextWrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     margin-top: 25px;
+    ${media.mobile`
+        width: 80%;
+    `}
 `;
 
 const SubText1 = styled.p`
     font-size: 17px;
     font-weight: 500;
     color: white;
+    ${media.mobile`
+        font-size: 13px;
+    `}
 `;
 
 const SubText2 = styled.p`
     font-size: 17px;
     font-weight: 700;
     color: white;
+    ${media.mobile`
+        font-size: 13px;
+    `}
 `;
 
 export default SignUpPage;
