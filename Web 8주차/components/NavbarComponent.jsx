@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import media from '../styles/media';
+import MenuIcon from '../src/assets/menu.png';
 
 // Styled components
 const Navbar = styled.div`
@@ -21,6 +23,11 @@ const MainText = styled.p`
     margin: 0px;
     color: white;
     padding-left: 20px;
+
+    ${media.mobile`
+        font-size: 15px;
+        width: 200px;
+    `}
 `;
 
 const MenuBox = styled.div`
@@ -58,6 +65,20 @@ const MenuText = styled.p`
 function NavbarComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [isMobileOrTablet, setIsMobileOrTablet] = useState(windowWidth < 1080);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+            setIsMobileOrTablet(window.innerWidth < 1080);
+        };
+        window.addEventListener('resize', handleResize);
+        // 컴포넌트가 언마운트 될 때 이벤트 리스너 제거
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -104,6 +125,11 @@ function NavbarComponent() {
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
+                {isMobileOrTablet 
+                ? 
+                    <img src={MenuIcon} alt="loading" width="15px" height="15px" color='white'/>
+                :
+                <>
                 {isLoggedIn ? (
                     <LoginText onClick={handleLoginClick}>로그아웃</LoginText>
                 ) : (
@@ -116,6 +142,8 @@ function NavbarComponent() {
                 <Link to="/now-playing-page"><MenuText isActive={activeMenu === 'now-playing'} onClick={() => handleMenuClick('now-playing')}>Now Playing</MenuText></Link>
                 <Link to="/top-rated-page"><MenuText isActive={activeMenu === 'top-rated'} onClick={() => handleMenuClick('top-rated')}>Top Rated</MenuText></Link>
                 <Link to="/up-coming-page"><MenuText isActive={activeMenu === 'up-coming'} onClick={() => handleMenuClick('up-coming')}>Upcoming</MenuText></Link>
+                </>
+                }
             </MenuBox>
         </Navbar>
     );
