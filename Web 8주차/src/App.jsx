@@ -31,7 +31,7 @@ function App() {
           <Route path='/top-rated-page' element={<TopRatedPage/>}/>
           <Route path='/up-coming-page' element={<UpComing/>}/>
           <Route path='/movie/:movieId' element={<MovieCastPage/>}/>
-          <Route path='/movie/:originalTitle' element={<MovieDetailPage/>}/>
+          <Route path='/movie/title/:originalTitle' element={<MovieDetailPage/>}/>
           <Route path='/*' element={<NotFoundPage/>}/>
         </Routes>
       </Container>

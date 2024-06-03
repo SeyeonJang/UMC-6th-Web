@@ -10,6 +10,7 @@ function MovieCastPage() {
 
     useEffect(() => {
         if (movieId) {
+            console.log('movie id:',movieId);
             const options = {
                 method: 'GET',
                 headers: {
@@ -22,13 +23,17 @@ function MovieCastPage() {
                 .then(response => response.json())
                 .then(data => {
                     setMovieDetail(data);
+                    console.log('here1');
+                    console.log(data);
                 })
                 .catch(err => console.error(err));
 
             fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KR`, options)
                 .then(response => response.json())
                 .then(data => {
-                    setCast(data.cast); // 출연진 정보를 state에 저장
+                    setCast(data.cast || []); // 출연진 정보를 state에 저장
+                    console.log('here2');
+                    console.log(data.cast);
                 })
                 .catch(err => console.error(err));
         }
