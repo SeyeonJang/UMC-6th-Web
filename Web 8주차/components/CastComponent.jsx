@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from '../styles/media';
 
 function CastComponent({image, name}) {
     const firstName = name.split(' ')[0];
@@ -22,8 +23,8 @@ const CastBox = styled.div`
 `;
 
 const Image = styled.img`
-    width: 90%;
-    height: 70%;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     border-radius: 50%;
 `;
@@ -31,6 +32,9 @@ const Image = styled.img`
 const NameText = styled.p`
     font-size: 15px;
     color: white;
+    ${media.mobile`
+        font-size: 10px;
+    `}
 `;
 
 export default CastComponent;

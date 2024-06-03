@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import CastComponent from '../../components/CastComponent';
+import media from '../../styles/media';
 
 function MovieCastPage() {
     const { movieId } = useParams();
@@ -102,6 +103,10 @@ const MovieDetailBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    ${media.mobile`
+        align-items: center;
+    `}
 `;
 
 const Overlay = styled.div`
@@ -122,6 +127,10 @@ const MovieDetailWrapper = styled.div`
     align-items: center;
     z-index: 1;
     margin-top: -30px;
+
+    ${media.mobile`
+        flex-direction: column;
+    `}
 `;
 
 const MoviePoster = styled.div`
@@ -129,29 +138,52 @@ const MoviePoster = styled.div`
     height: 600px;
     background-image: url('${props => `https://image.tmdb.org/t/p/w500/${props.posterPath}`}');
     background-size: cover;
+
+    ${media.mobile`
+        width: 200px;
+        height: 300px;
+    `}
 `;
 
 const MovieContentWrapper = styled.div`
     width: 30%;
     color: white;
     margin-left: 80px;
+
+    ${media.mobile`
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 20px;
+    `}
 `;
 
 const MainText = styled.p`
     font-size: 25px;
     font-weight: bold;
+
+    ${media.mobile`
+        font-size: 20px;
+    `}
 `;
 
 const SubText = styled.p`
     font-size: 18px;
     font-weight: 500;
     margin-top: 25px;
+
+    ${media.mobile`
+        font-size: 14px;
+    `}
 `;
 
 const OverViewBox = styled.div`
     font-size: 16px;
     font-weight: 300;
     margin-top: 25px;
+
+    ${media.mobile`
+        font-size: 12px;
+    `}
 `;
 
 const MovieCastBox = styled.div`
@@ -163,6 +195,10 @@ const MovieCastBox = styled.div`
     flex-direction: column;
     align-items: center;
     justify-contents: center;
+
+    ${media.mobile`
+        width: 100%;
+    `}
 `;
 
 const CastText = styled.p`
@@ -170,6 +206,10 @@ const CastText = styled.p`
     font-weight: bold;
     color: white;
     margin: 60px 0px;
+
+    ${media.mobile`
+        font-size: 15px;
+    `}
 `;
 
 const CastWrapper = styled.div`
@@ -189,6 +229,13 @@ const MovieItem = styled.div`
     margin-bottom: 30px;
     margin-left: 40px;
     padding: 0;
+
+    ${media.mobile`
+        width: 100px;
+        height: 100px;
+        flex-basis: calc(100%-20px);
+        margin-left: 50px;
+    `}
 `;
 
 export default MovieCastPage;
