@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MovieComponent from './MovieComponent';
 import MovieDetailComponent from './MovieDetailComponent';
 import SpinnerComponent from './SpinnerComponent';
+import media from '../styles/media';
 
 function InfiniteScrollFetchComponent({address}) {
     const [movieData, setMovieData] = useState([]);
@@ -160,6 +161,10 @@ const MovieItem = styled.div`
     &:hover .movieContainer__movieItem__movieDetailWrapper {
         display: flex;
     }
+
+    ${media.mobile`
+        flex-basis: 80%;
+    `}
 `;
 
 const MovieDetailWrapper = styled.div`

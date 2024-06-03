@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MovieComponent from './MovieComponent';
 import MovieDetailComponent from './MovieDetailComponent';
 import SpinnerComponent from './SpinnerComponent';
+import media from '../styles/media';
 
 function MoviesFetchComponent({address}) {
     const [movieData, setMovieData] = useState([]);
@@ -100,6 +101,10 @@ const MovieItem = styled.div`
     &:hover .movieContainer__movieItem__movieDetailWrapper {
         display: flex;
     }
+
+    ${media.mobile`
+        flex-basis: 80%;
+    `}
 `;
 
 const MovieDetailWrapper = styled.div`
