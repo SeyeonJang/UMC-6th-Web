@@ -62,11 +62,48 @@ const MenuText = styled.p`
     }
 `;
 
+const Sidebar = styled.div`
+    position: fixed;
+    top: 0;
+    right: ${({ isOpen }) => (isOpen ? "0" : "-250px")}; // isOpen 상태에 따라 위치 변경
+    width: 40%;
+    height: 100%;
+    background-color: #222222;
+    padding-top: 20px;
+    z-index: 100;
+    transition: right 0.3s ease-in-out;
+`;
+
+const SideMenuText = styled.p`
+    margin-top: 5px;
+    padding: 0px 10px;
+    color: ${({ isActive }) => (isActive ? 'orange' : 'white')};
+    font-size: 15px;
+    &:hover {
+        color: orange;
+        font-size: 15.5px;
+        font-weight: 600;
+    }
+`;
+
+const SideLoginText = styled.p`
+    margin-top: 5px;
+    padding: 0px 10px;
+    font-size: 15px;
+    color: orange;
+    &:hover {
+        color: orange;
+        font-size: 15.5px;
+        font-weight: 600;
+    }
+`;
+
 function NavbarComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activeMenu, setActiveMenu] = useState(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [isMobileOrTablet, setIsMobileOrTablet] = useState(windowWidth < 1080);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -121,13 +158,17 @@ function NavbarComponent() {
         setActiveMenu(menu);
     }
 
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen); // 사이드바 토글 함수
+    };
+
     return (
         <Navbar>
             <Link to="/popular-page"><MainText>UMC Chacco Movie</MainText></Link>
             <MenuBox>
                 {isMobileOrTablet 
                 ? 
-                    <img src={MenuIcon} alt="loading" width="15px" height="15px" color='white'/>
+                    <img src={MenuIcon} onClick={toggleSidebar} alt="loading" width="15px" height="15px" color='white'/>
                 :
                 <>
                 {isLoggedIn ? (
@@ -145,6 +186,19 @@ function NavbarComponent() {
                 </>
                 }
             </MenuBox>
+            {isMobileOrTablet && (
+                <Sidebar isOpen={sidebarOpen}>
+                    <SideMenuText onClick={() => toggleSidebar()}>닫기</SideMenuText>
+                    <>
+                        <Link to="/login"><SideLoginText onClick={() => {handleLoginClick, toggleSidebar()}}>로그인</SideLoginText></Link>
+                        <Link to="/signup"><SideMenuText isActive={activeMenu === 'signup'} onClick={() => {handleMenuClick('signup'), toggleSidebar()}}>회원가입</SideMenuText></Link>
+                    </>
+                    <Link to="/popular-page"><SideMenuText isActive={activeMenu === 'popular'} onClick={() => {handleMenuClick('popular'), toggleSidebar()}}>Popular</SideMenuText></Link>
+                    <Link to="/now-playing-page"><SideMenuText isActive={activeMenu === 'now-playing'} onClick={() => {handleMenuClick('now-playing'), toggleSidebar()}}>Now Playing</SideMenuText></Link>
+                    <Link to="/top-rated-page"><SideMenuText isActive={activeMenu === 'top-rated'} onClick={() => {handleMenuClick('top-rated'), toggleSidebar()}}>Top Rated</SideMenuText></Link>
+                    <Link to="/up-coming-page"><SideMenuText isActive={activeMenu === 'up-coming'} onClick={() => {handleMenuClick('up-coming'), toggleSidebar()}}>Upcoming</SideMenuText></Link>
+                </Sidebar>
+            )}
         </Navbar>
     );
 }
