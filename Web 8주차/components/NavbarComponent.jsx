@@ -190,13 +190,13 @@ function NavbarComponent() {
                 <Sidebar isOpen={sidebarOpen}>
                     <SideMenuText onClick={() => toggleSidebar()}>닫기</SideMenuText>
                     <>
-                        <Link to="/login"><SideLoginText onClick={handleLoginClick}>로그인</SideLoginText></Link>
-                        <Link to="/signup"><SideMenuText isActive={activeMenu === 'signup'} onClick={() => handleMenuClick('signup')}>회원가입</SideMenuText></Link>
+                        <Link to="/login"><SideLoginText onClick={() => {handleLoginClick, toggleSidebar()}}>로그인</SideLoginText></Link>
+                        <Link to="/signup"><SideMenuText isActive={activeMenu === 'signup'} onClick={() => {handleMenuClick('signup'), toggleSidebar()}}>회원가입</SideMenuText></Link>
                     </>
-                    <Link to="/popular-page"><SideMenuText isActive={activeMenu === 'popular'} onClick={() => handleMenuClick('popular')}>Popular</SideMenuText></Link>
-                    <Link to="/now-playing-page"><SideMenuText isActive={activeMenu === 'now-playing'} onClick={() => handleMenuClick('now-playing')}>Now Playing</SideMenuText></Link>
-                    <Link to="/top-rated-page"><SideMenuText isActive={activeMenu === 'top-rated'} onClick={() => handleMenuClick('top-rated')}>Top Rated</SideMenuText></Link>
-                    <Link to="/up-coming-page"><SideMenuText isActive={activeMenu === 'up-coming'} onClick={() => handleMenuClick('up-coming')}>Upcoming</SideMenuText></Link>
+                    <Link to="/popular-page"><SideMenuText isActive={activeMenu === 'popular'} onClick={() => {handleMenuClick('popular'), toggleSidebar()}}>Popular</SideMenuText></Link>
+                    <Link to="/now-playing-page"><SideMenuText isActive={activeMenu === 'now-playing'} onClick={() => {handleMenuClick('now-playing'), toggleSidebar()}}>Now Playing</SideMenuText></Link>
+                    <Link to="/top-rated-page"><SideMenuText isActive={activeMenu === 'top-rated'} onClick={() => {handleMenuClick('top-rated'), toggleSidebar()}}>Top Rated</SideMenuText></Link>
+                    <Link to="/up-coming-page"><SideMenuText isActive={activeMenu === 'up-coming'} onClick={() => {handleMenuClick('up-coming'), toggleSidebar()}}>Upcoming</SideMenuText></Link>
                 </Sidebar>
             )}
         </Navbar>
