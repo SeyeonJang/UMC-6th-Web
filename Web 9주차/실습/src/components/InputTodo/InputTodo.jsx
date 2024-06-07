@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch  } from 'react-redux'
-import {add} from '../redux/todoSlice'
-import s from './InputTodo.module.css'
+import {add} from '../../redux/todoSlice'
+import s from './InputTodo.css';
 
 export default function InputTodo() {
     const dispatch = useDispatch()
