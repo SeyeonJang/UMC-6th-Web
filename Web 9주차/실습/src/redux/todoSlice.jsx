@@ -1,3 +1,5 @@
+import { createSlice } from '@reduxjs/toolkit';
+
 let nextId = 0;
 const initialState = [];
 
@@ -12,7 +14,7 @@ export const todoSlice = createSlice({
                 text : action.payload,
                 complete : false,
             })
-        },   
+    },   
         remove : (state, action) =>{
             return state.filter(e => e.id !== action.payload)
         },

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { remove , complete } from '../../redux/todoSlice'
-import s from './TodoList.css'
+import s from './TodoList.module.css'
 
 
 export default function TodoList() {
