@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodos, removeTodos, toggleTodos } from "../src/components/TodosReducer";
+import { addTodos, removeTodos, toggleTodos } from "./todoSlice";
 import styled from 'styled-components';
 
 const TodoItem = ({ todo, onToggleHandler, onRemoveHandler }) => {
@@ -21,7 +21,7 @@ const TodoItem = ({ todo, onToggleHandler, onRemoveHandler }) => {
 };
 
 function App() {
-  const todos = useSelector((state) => state.todos);
+  const { todos } = useSelector((state) => state.todos);
 
   const [inputText, setInputText] = useState("");
 
