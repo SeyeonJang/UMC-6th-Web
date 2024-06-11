@@ -1,17 +1,24 @@
 import styled from 'styled-components';
-import { increase, decrease } from '../src/module/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { increase, decrease, removeItem } from '../src/module/cartSlice';
 import { ChevronDown, ChevronUp } from '../constants/icon'; 
 
 function MusicComponent({id, title, singer, price, img, amount}) {
     const dispatch = useDispatch();
+    const item = useSelector((state) => state.carts.carts.find((cartItem) => cartItem.id === id));
 
     const handleIncrease = () => {
         dispatch(increase(id));
     };
 
     const handleDecrease = () => {
-        dispatch(decrease(id));
+        if (item && item.amount === 1) {
+            dispatch(removeItem(id));
+        } else {
+            dispatch(decrease(id));
+        }
     };
+    
 
     return(
         <Container>
