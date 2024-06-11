@@ -1,15 +1,18 @@
 import styled from 'styled-components';
+import { ChevronDown, ChevronUp } from '../constants/icon'; 
 
 function MusicComponent({title, singer, price, img}) {
     return(
         <Container>
             <Image src={img} alt={title}/>
             <TextWrapper>
-                <TitleText>{title}</TitleText>
+                <TitleText>{title} | {singer}</TitleText>
+                <SingerText>{price}원</SingerText>
             </TextWrapper>
-            <ButtonWrapper>
-
-            </ButtonWrapper>
+            <ButtonContainer>
+                <ChevronUp/>
+                <ChevronDown/>
+            </ButtonContainer>
         </Container>
     );
 }
@@ -19,8 +22,9 @@ const Container = styled.div`
     height: 65px;
     display: flex;
     flex-direction: row;
-    justify-contents: space-around;
+    justify-contents: space-between;
     margin-top: 25px;
+    padding: 0; 
 `;
 
 const Image = styled.img`
@@ -31,20 +35,33 @@ const Image = styled.img`
 
 const TextWrapper = styled.div`
     width: 60%;
-    height: 20px;
     padding: 0px 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 `;
 
 const TitleText = styled.p`
     font-size: 15px;
     font-weight: 500;
+    margin: 0;
+    overflow: ellipsis;
 `;
 
-const ButtonWrapper = styled.div`
+const SingerText = styled.p`
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+    color: grey;
+    margin-top: 5px;
+`;
+
+const ButtonContainer = styled.div`
     height: 100%;
-    width: auto;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 180px;
 `;
 
 export default MusicComponent

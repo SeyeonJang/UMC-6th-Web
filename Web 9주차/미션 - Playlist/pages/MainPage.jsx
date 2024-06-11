@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import MusicComponent from '../components/MusicComponent'
 import cartItems from '../constants/cartItems'
+import { CartIcon } from '../constants/icon'
 
 function MainPage() {
     return (
         <PlaylistContainer>
             <Navbar>
                 <MainText>Chacco Playlist</MainText>
-                <Icon></Icon>
+                <IconWrapper><CartIcon/></IconWrapper>
             </Navbar>
 
             <MusicContainer>
@@ -28,7 +29,8 @@ function MainPage() {
 
 const PlaylistContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -53,10 +55,9 @@ const MainText = styled.p`
     padding-top: 3px;
 `;
 
-const Icon = styled.div`
-    width: 40px;
-    height: 40px;
-    background-color: red;
+const IconWrapper = styled.div`
+    width: 25px;
+    height: 25px;
 `;
 
 const MusicContainer = styled.div`
@@ -64,6 +65,7 @@ const MusicContainer = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
 `;
 
 export default MainPage
