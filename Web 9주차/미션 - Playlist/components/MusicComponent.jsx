@@ -1,17 +1,29 @@
 import styled from 'styled-components';
+import { increase, decrease } from '../src/module/cartSlice';
 import { ChevronDown, ChevronUp } from '../constants/icon'; 
 
-function MusicComponent({title, singer, price, img}) {
+function MusicComponent({id, title, singer, price, img, amount}) {
+    const dispatch = useDispatch();
+
+    const handleIncrease = () => {
+        dispatch(increase(id));
+    };
+
+    const handleDecrease = () => {
+        dispatch(decrease(id));
+    };
+
     return(
         <Container>
             <Image src={img} alt={title}/>
             <TextWrapper>
                 <TitleText>{title} | {singer}</TitleText>
-                <SingerText>{price}원</SingerText>
+                <SingerText>₩ {price}</SingerText>
             </TextWrapper>
             <ButtonContainer>
-                <ChevronUp/>
-                <ChevronDown/>
+                <Button onClick={handleIncrease}><ChevronUp/></Button>
+                <TitleText>{amount}</TitleText>
+                <Button onClick={handleDecrease}><ChevronDown/></Button>
             </ButtonContainer>
         </Container>
     );
@@ -61,7 +73,14 @@ const ButtonContainer = styled.div`
     width: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     padding-left: 180px;
+`;
+
+const Button = styled.div`
+    width: 100%;
+    height: 100%;
 `;
 
 export default MusicComponent

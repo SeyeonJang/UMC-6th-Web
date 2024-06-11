@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import MusicComponent from '../components/MusicComponent'
-import cartItems from '../constants/cartItems'
 import { CartIcon } from '../constants/icon'
+import { useSelector } from 'react-redux';
 
 function MainPage() {
+    const carts = useSelector(state => state.carts.carts);
+
     return (
         <PlaylistContainer>
             <Navbar>
@@ -12,14 +14,16 @@ function MainPage() {
             </Navbar>
 
             <MusicContainer>
-                {cartItems.map(item => (
-                        <MusicComponent
-                            key={item.id}
-                            title={item.title}
-                            singer={item.singer}
-                            price={item.price}
-                            img={item.img}
-                        />
+                {carts.map(item => (
+                    <MusicComponent
+                        key={item.id}
+                        id={item.id}
+                        title={item.title}
+                        singer={item.singer}
+                        price={item.price}
+                        img={item.img}
+                        amount={item.amount}
+                    />
                 ))}
             </MusicContainer>
 
