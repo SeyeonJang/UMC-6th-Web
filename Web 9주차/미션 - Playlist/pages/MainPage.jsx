@@ -2,15 +2,21 @@ import styled from 'styled-components'
 import MusicComponent from '../components/MusicComponent'
 import { CartIcon } from '../constants/icon'
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from '../src/module/cartSlice';
+import { clearCart, calculateTotals } from '../src/module/cartSlice';
+import { useEffect } from 'react';
 
 function MainPage() {
     const dispatch = useDispatch();
-    const carts = useSelector(state => state.carts.carts);
+    const { carts, totalQuantity, totalAmount } = useSelector(state => state.carts);
+
     const handleCleanCart = () => {
         dispatch(clearCart());
     };
 
+    useEffect(() => {
+        dispatch(calculateTotals());
+    }, [carts, dispatch]);
+ㄴ
     return (
         <PlaylistContainer>
             <Navbar>
@@ -35,7 +41,7 @@ function MainPage() {
             <Line/>
             <TextWrapper>
                 <SubText>총 금액</SubText>
-                <SubText>₩ 110000</SubText>
+                <SubText>₩ {totalAmount.toLocaleString()}</SubText>
             </TextWrapper>
             <button onClick={handleCleanCart}>전체 초기화</button>
             <TextWrapper/>
