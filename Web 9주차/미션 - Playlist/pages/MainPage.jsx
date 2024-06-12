@@ -16,12 +16,17 @@ function MainPage() {
     useEffect(() => {
         dispatch(calculateTotals());
     }, [carts, dispatch]);
-ㄴ
+
     return (
         <PlaylistContainer>
             <Navbar>
                 <MainText>Chacco Playlist</MainText>
-                <IconWrapper><CartIcon/></IconWrapper>
+                <IconWrapper>
+                    <CartIcon/>
+                    {totalQuantity > 0 && (
+                        <CartBadge>{totalQuantity}</CartBadge>
+                    )}
+                </IconWrapper>
             </Navbar>
 
             <MusicContainer>
@@ -81,6 +86,22 @@ const MainText = styled.p`
 const IconWrapper = styled.div`
     width: 25px;
     height: 25px;
+`;
+
+const CartBadge = styled.div`
+    position: relative;
+    top: -30px;
+    right: -13px;
+    background-color: #04E532;
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const MusicContainer = styled.div`
