@@ -27,6 +27,14 @@ function MainPage() {
                 ))}
             </MusicContainer>
 
+            <Line/>
+            <TextWrapper>
+                <SubText>총 금액</SubText>
+                <SubText>₩ 110000</SubText>
+            </TextWrapper>
+            <button>전체 초기화</button>
+            <TextWrapper/>
+
         </PlaylistContainer>
     )
 }
@@ -70,6 +78,29 @@ const MusicContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
+`;
+
+const Line = styled.div`
+    width: 50%;
+    height: 2px;
+    background-color: lightgrey;
+    margin-bottom: 30px;
+`;
+
+const TextWrapper = styled.div`
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 50px;
+`;
+
+const SubText = styled.p`
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+    overflow: ellipsis;
 `;
 
 export default MainPage
