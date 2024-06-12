@@ -1,10 +1,15 @@
 import styled from 'styled-components'
 import MusicComponent from '../components/MusicComponent'
 import { CartIcon } from '../constants/icon'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart } from '../src/module/cartSlice';
 
 function MainPage() {
+    const dispatch = useDispatch();
     const carts = useSelector(state => state.carts.carts);
+    const handleCleanCart = () => {
+        dispatch(clearCart());
+    };
 
     return (
         <PlaylistContainer>
@@ -32,7 +37,7 @@ function MainPage() {
                 <SubText>총 금액</SubText>
                 <SubText>₩ 110000</SubText>
             </TextWrapper>
-            <button>전체 초기화</button>
+            <button onClick={handleCleanCart}>전체 초기화</button>
             <TextWrapper/>
 
         </PlaylistContainer>
