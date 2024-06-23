@@ -71,8 +71,6 @@ export const cartSlice = createSlice({
             .addCase(fetchCartItems.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.carts = action.payload;
-                console.log('aaaaa');
-                console.log(state.carts);
             })
             .addCase(fetchCartItems.rejected, (state, action) => {
                 state.status = "failed";

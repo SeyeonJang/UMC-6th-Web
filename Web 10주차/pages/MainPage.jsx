@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import MusicComponent from '../components/MusicComponent'
+import SpinnerComponent from "../components/SpinnerComponent"
 import { CartIcon } from '../constants/icon'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCartItems, clearCart, calculateTotals } from '../src/module/cartSlice';
@@ -22,6 +23,15 @@ function MainPage() {
     useEffect(() => {
         dispatch(calculateTotals());
     }, [carts, dispatch]);
+
+    if (status === "loading") {
+        return (
+            <LoadingContainer>
+                <SpinnerComponent />
+                <LoadingText>로딩 중...</LoadingText>
+            </LoadingContainer>
+        );
+    }
 
     return (
         <PlaylistContainer>
@@ -139,6 +149,20 @@ const SubText = styled.p`
     font-weight: 500;
     margin: 0;
     overflow: ellipsis;
+`;
+
+const LoadingContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+`;
+
+const LoadingText = styled.p`
+    margin-top: 20px;
+    font-size: 18px;
+    color: white;
 `;
 
 export default MainPage
