@@ -19,10 +19,6 @@ function MusicComponent({id, title, singer, price, img, amount}) {
         }
     };
 
-    console.log('MusicComponent Console ===============');
-    console.log(id, title, singer, price);
-    
-
     return(
         <Container>
             <Image src={img} alt={title}/>

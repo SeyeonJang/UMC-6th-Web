@@ -31,6 +31,10 @@ function MainPage() {
                 <LoadingText>로딩 중...</LoadingText>
             </LoadingContainer>
         );
+    }  
+
+    if (status === "failed") {
+        alert(`에러 발생: ${error}`);
     }
 
     return (
