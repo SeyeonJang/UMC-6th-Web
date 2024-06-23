@@ -2,10 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCartItems = createAsyncThunk(
     "carts/fetchCartItems",
-    async () => {
-        const response = await fetch("http://localhost:8080/musics");
-        const data = await response.json();
-        return data;
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetch("http://localhost:8080/musics");
+            const data = await response.json();
+
+            if (response.status === 200) {
+                return data;
+            } else if (response.status === 404) {
+                return rejectWithValue({ message: '404 Page Not Found' });
+            } else {
+                return rejectWithValue({ message: 'An unknown error occurred' });
+            }
+        } catch (error) {
+            return rejectWithValue({ message: error.message });
+        }
     }
 );
 
