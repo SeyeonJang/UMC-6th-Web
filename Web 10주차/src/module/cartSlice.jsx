@@ -5,7 +5,7 @@ export const fetchCartItems = createAsyncThunk(
     async () => {
         const response = await fetch("http://localhost:8080/musics");
         const data = await response.json();
-        console.log(data);
+        return data;
     }
 );
 
@@ -13,7 +13,7 @@ const initialState = {
     carts: [],
     totalQuantity: 0,
     totalAmount: 0,
-    status: "idle", // 비동기 작업의 상태를 관리하기 위한 필드
+    status: "idle",
     error: null,
 };
 
@@ -51,20 +51,22 @@ export const cartSlice = createSlice({
                 return total + item.price * item.amount;
             }, 0);
         },
-        extraReducers: (builder) => {
-            builder
-                .addCase(fetchCartItems.pending, (state) => {
-                    state.status = "loading";
-                })
-                .addCase(fetchCartItems.fulfilled, (state, action) => {
-                    state.status = "succeeded";
-                    state.carts = action.payload;
-                })
-                .addCase(fetchCartItems.rejected, (state, action) => {
-                    state.status = "failed";
-                    state.error = action.error.message;
-                });
-        },        
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCartItems.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchCartItems.fulfilled, (state, action) => {
+                state.status = "succeeded";
+                state.carts = action.payload;
+                console.log('aaaaa');
+                console.log(state.carts);
+            })
+            .addCase(fetchCartItems.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message;
+            });
     },
 });
 

@@ -35,7 +35,7 @@ function MainPage() {
                 </IconWrapper>
             </Navbar>
 
-            <MusicContainer>C
+            <MusicContainer>
                 {carts.map(item => (
                     <MusicComponent
                         key={item.id}

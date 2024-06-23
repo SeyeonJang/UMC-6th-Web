@@ -18,6 +18,9 @@ function MusicComponent({id, title, singer, price, img, amount}) {
             dispatch(decrease(id));
         }
     };
+
+    console.log('MusicComponent Console ===============');
+    console.log(id, title, singer, price);
     
 
     return(
