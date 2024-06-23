@@ -2,12 +2,18 @@ import styled from 'styled-components'
 import MusicComponent from '../components/MusicComponent'
 import { CartIcon } from '../constants/icon'
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, calculateTotals } from '../src/module/cartSlice';
+import { fetchCartItems, clearCart, calculateTotals } from '../src/module/cartSlice';
 import { useEffect } from 'react';
 
 function MainPage() {
     const dispatch = useDispatch();
-    const { carts, totalQuantity, totalAmount } = useSelector(state => state.carts);
+    const { carts, totalQuantity, totalAmount, status, error } = useSelector(
+        (state) => state.carts
+    );
+
+    useEffect(() => {
+        dispatch(fetchCartItems());
+    }, [dispatch]);
 
     const handleCleanCart = () => {
         dispatch(clearCart());
@@ -29,7 +35,7 @@ function MainPage() {
                 </IconWrapper>
             </Navbar>
 
-            <MusicContainer>
+            <MusicContainer>C
                 {carts.map(item => (
                     <MusicComponent
                         key={item.id}

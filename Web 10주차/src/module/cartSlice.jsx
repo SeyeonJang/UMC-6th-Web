@@ -1,10 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import cartItems from "../../constants/cartItems";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchCartItems = createAsyncThunk(
+    "carts/fetchCartItems",
+    async () => {
+        const response = await fetch("http://localhost:8080/musics");
+        const data = await response.json();
+        console.log(data);
+    }
+);
 
 const initialState = {
-    carts: cartItems,
+    carts: [],
     totalQuantity: 0,
     totalAmount: 0,
+    status: "idle", // 비동기 작업의 상태를 관리하기 위한 필드
+    error: null,
 };
 
 export const cartSlice = createSlice({
@@ -40,7 +50,21 @@ export const cartSlice = createSlice({
             state.totalAmount = state.carts.reduce((total, item) => {
                 return total + item.price * item.amount;
             }, 0);
-        }
+        },
+        extraReducers: (builder) => {
+            builder
+                .addCase(fetchCartItems.pending, (state) => {
+                    state.status = "loading";
+                })
+                .addCase(fetchCartItems.fulfilled, (state, action) => {
+                    state.status = "succeeded";
+                    state.carts = action.payload;
+                })
+                .addCase(fetchCartItems.rejected, (state, action) => {
+                    state.status = "failed";
+                    state.error = action.error.message;
+                });
+        },        
     },
 });
 
